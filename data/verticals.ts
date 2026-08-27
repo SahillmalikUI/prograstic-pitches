@@ -12,6 +12,7 @@ export interface IndustryVertical {
   accentHex: string;
   heroGlowClass: string;
   mockupImage?: string;
+  featureImage?: string;
   statMetrics: {
     value: string;
     label: string;
@@ -48,6 +49,7 @@ export const VERTICALS: Record<string, IndustryVertical> = {
     accentHex: "#2563EB",
     heroGlowClass: "hero-glow-blue",
     mockupImage: "/mockups/hospital_ui.jpg",
+    featureImage: "/mockups/hospital_feature.jpg",
     statMetrics: [
       { value: "0 mins", label: "OPD Waiting Room Chaos", sublabel: "Automated dynamic token dispatch" },
       { value: "3.5x", label: "Faster Doctor EMR Intake", sublabel: "Single-screen clinical notes & e-rx" },
@@ -117,6 +119,7 @@ export const VERTICALS: Record<string, IndustryVertical> = {
     accentHex: "#0D9488",
     heroGlowClass: "hero-glow-teal",
     mockupImage: "/mockups/dental_ui.jpg",
+    featureImage: "/mockups/dental_feature.jpg",
     statMetrics: [
       { value: "95%+", label: "Chair Capacity Utilization", sublabel: "Zero 45-minute idle gaps" },
       { value: "-45%", label: "No-Show & Late Cancellations", sublabel: "Automated 24h/2h interactive WhatsApp" },
@@ -186,6 +189,7 @@ export const VERTICALS: Record<string, IndustryVertical> = {
     accentHex: "#E11D48",
     heroGlowClass: "hero-glow-rose",
     mockupImage: "/mockups/aesthetics_ui.jpg",
+    featureImage: "/mockups/aesthetics_ui.jpg",
     statMetrics: [
       { value: "4x", label: "Consultation Conversion", sublabel: "Interactive visual skin assessment" },
       { value: "100%", label: "Photo Privacy & Compliance", sublabel: "Encrypted patient photo vault" },
@@ -255,6 +259,7 @@ export const VERTICALS: Record<string, IndustryVertical> = {
     accentHex: "#D97706",
     heroGlowClass: "hero-glow-amber",
     mockupImage: "/mockups/manufacturing_ui.jpg",
+    featureImage: "/mockups/manufacturing_feature.jpg",
     statMetrics: [
       { value: "Real-Time", label: "Shop Floor Visibility", sublabel: "Zero delayed end-of-day Excel logs" },
       { value: "-35%", label: "Machine Downtime Loss", sublabel: "Instant operator breakdown alerts" },
@@ -324,6 +329,7 @@ export const VERTICALS: Record<string, IndustryVertical> = {
     accentHex: "#4F46E5",
     heroGlowClass: "hero-glow-indigo",
     mockupImage: "/mockups/hospital_ui.jpg",
+    featureImage: "/mockups/hospital_feature.jpg",
     statMetrics: [
       { value: "60 Sec", label: "Consultation Note Generation", sublabel: "Specialty-focused clinical templates" },
       { value: "100%", label: "Post-Op Follow-Up Reach", sublabel: "Automated WhatsApp recovery checklists" },
@@ -393,6 +399,7 @@ export const VERTICALS: Record<string, IndustryVertical> = {
     accentHex: "#2563EB",
     heroGlowClass: "hero-glow-blue",
     mockupImage: "/mockups/hospital_ui.jpg",
+    featureImage: "/mockups/education_feature.jpg",
     statMetrics: [
       { value: "0", label: "Missed Intake Deadlines", sublabel: "Automated university countdown radar" },
       { value: "3x", label: "Counselor Case Capacity", sublabel: "Structured document intake portal" },
@@ -462,6 +469,7 @@ export const VERTICALS: Record<string, IndustryVertical> = {
     accentHex: "#4F46E5",
     heroGlowClass: "hero-glow-indigo",
     mockupImage: "/mockups/hospital_ui.jpg",
+    featureImage: "/mockups/hospital_feature.jpg",
     statMetrics: [
       { value: "Sub-Second", label: "Cloud DICOM Slice Streaming", sublabel: "Zero software installation required" },
       { value: "1-Tap", label: "Secure Report Dispatch", sublabel: "Encrypted link sent to patient & doctor" },
@@ -531,6 +539,7 @@ export const VERTICALS: Record<string, IndustryVertical> = {
     accentHex: "#E11D48",
     heroGlowClass: "hero-glow-rose",
     mockupImage: "/mockups/aesthetics_ui.jpg",
+    featureImage: "/mockups/aesthetics_ui.jpg",
     statMetrics: [
       { value: "100%", label: "Trigger Timing Compliance", sublabel: "Minute-accurate dosage alerts" },
       { value: "-75%", label: "Anxiety Calls to Clinic Nurses", sublabel: "Live daily embryology progress" },

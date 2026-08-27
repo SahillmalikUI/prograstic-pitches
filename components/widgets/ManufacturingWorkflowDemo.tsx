@@ -1,128 +1,134 @@
 "use client";
 
 import React, { useState } from "react";
-import { Cpu, AlertTriangle, CheckCircle2, QrCode, RefreshCw, Bell, Layers, Zap } from "lucide-react";
+import { Wrench, ShieldCheck, CheckCircle2, AlertTriangle, Play, RefreshCw, Cpu, Activity } from "lucide-react";
 
 export function ManufacturingWorkflowDemo() {
-  const [machines, setMachines] = useState([
-    { id: "CNC-01", name: "CNC Milling Station 1", status: "Running", output: "1,420 / 1,500 Units", oee: "94.2%", operator: "Ramesh K." },
-    { id: "INJ-04", name: "Injection Moulding Line 4", status: "Running", output: "890 / 1,000 Units", oee: "88.5%", operator: "Suraj P." },
-    { id: "ASM-02", name: "Assembly & Packing Cell", status: "Running", output: "3,200 / 3,500 Units", oee: "96.1%", operator: "Vikram N." },
-  ]);
+  const [activeMachine, setActiveMachine] = useState<string>("CNC Mill #04");
+  const [breakdownAlert, setBreakdownAlert] = useState(false);
+  const [batchCount, setBatchCount] = useState<number>(450);
 
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+  const machines = [
+    { name: "CNC Mill #04", line: "Line 2 (Precision Machining)", status: "Running", oee: "94.2%", operator: "Manish Kumar" },
+    { name: "Injection Molding #02", line: "Line 1 (Polymer Housing)", status: "Running", oee: "91.8%", operator: "Gurpreet Singh" },
+    { name: "Laser Cutter #01", line: "Line 3 (Sheet Metal)", status: "Maintenance Queued", oee: "82.4%", operator: "Rajesh V." },
+  ];
 
-  const handleTriggerBreakdown = (machineId: string) => {
-    setMachines((prev) =>
-      prev.map((m) =>
-        m.id === machineId ? { ...m, status: "DOWNTIME (Hydraulic Fault)", oee: "62.0%" } : m
-      )
-    );
-    setAlertMessage(`🚨 Automated Breakdown Ticket dispatched to Plant Maintenance Lead for ${machineId}! Response timer active.`);
+  const handleBreakdown = () => {
+    setBreakdownAlert(true);
   };
 
-  const handleResolve = (machineId: string) => {
-    setMachines((prev) =>
-      prev.map((m) =>
-        m.id === machineId ? { ...m, status: "Running", oee: "93.0%" } : m
-      )
-    );
-    setAlertMessage(`✅ Machine ${machineId} marked operational by Maintenance Engineer.`);
+  const handleReset = () => {
+    setBreakdownAlert(false);
   };
 
   return (
-    <div className="rounded-3xl bg-white border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+    <div className="rounded-[28px] bg-white border border-slate-200 p-6 sm:p-10 shadow-sm space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-100 text-amber-800 text-xs font-mono font-medium">
-            <Cpu className="w-3.5 h-3.5" />
-            SHOP FLOOR TELEMETRY SIMULATOR
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-100 text-amber-700 text-xs sm:text-sm font-mono font-bold">
+            <Cpu className="w-4 h-4" />
+            RUGGED SHOP FLOOR TERMINAL
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-display mt-1">
-            Rugged Shop Floor Data Entry & Live Machine Downtime Radar
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mt-2">
+            Operator Touch Entry & Instant Machine Breakdown Alerts
           </h3>
-          <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-            Test how factory floor operators log production batches and trigger instant 1-tap maintenance dispatch.
+          <p className="text-sm sm:text-base text-slate-500 mt-1">
+            Test how factory floor operators log parts produced and trigger instant maintenance dispatch without paperwork.
           </p>
         </div>
 
-        <div className="flex items-center gap-1.5 text-xs text-slate-600 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full font-mono">
-          <QrCode className="w-4 h-4 text-amber-600" />
-          <span>Barcode & QR Traceability</span>
+        <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-600 bg-slate-50 border border-slate-200 px-4 py-2 rounded-full font-mono shrink-0">
+          <ShieldCheck className="w-4 h-4 text-amber-600" />
+          <span>Rugged Tablet Interface</span>
         </div>
       </div>
 
-      {/* Machine Status Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {machines.map((m) => {
-          const isDown = m.status.includes("DOWNTIME");
-          return (
-            <div
-              key={m.id}
-              className={`p-5 rounded-2xl border space-y-3 transition-all ${
-                isDown
-                  ? "bg-red-50/60 border-red-200 shadow-sm"
-                  : "bg-slate-50 border-slate-200"
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold font-mono text-slate-900">{m.id}</span>
-                <span
-                  className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full ${
-                    isDown
-                      ? "bg-red-100 text-red-700"
-                      : "bg-emerald-100 text-emerald-800"
-                  }`}
-                >
-                  {m.status}
-                </span>
-              </div>
-
-              <div>
-                <div className="text-xs font-bold text-slate-900">{m.name}</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">Operator: {m.operator}</div>
-              </div>
-
-              <div className="p-2.5 rounded-xl bg-white border border-slate-200 text-xs space-y-1 font-mono text-slate-700">
-                <div className="flex justify-between">
-                  <span>Batch Output:</span>
-                  <span className="font-bold text-slate-900">{m.output}</span>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Left Column: Machine Grid */}
+        <div className="lg:col-span-7 space-y-4">
+          <label className="text-xs sm:text-sm font-bold text-slate-700 uppercase font-mono tracking-wider block">
+            Select Active Machine Station
+          </label>
+          <div className="space-y-3">
+            {machines.map((m) => (
+              <div
+                key={m.name}
+                onClick={() => setActiveMachine(m.name)}
+                className={`p-5 rounded-2xl border-2 cursor-pointer transition-all ${
+                  activeMachine === m.name
+                    ? "border-amber-400 bg-amber-50/50 shadow-md"
+                    : "border-slate-200 bg-slate-50 hover:border-slate-300"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="font-bold text-base sm:text-lg text-slate-900">{m.name}</div>
+                  <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-white border border-slate-200 text-slate-700">
+                    OEE: {m.oee}
+                  </span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Plant OEE:</span>
-                  <span className="font-bold text-slate-900">{m.oee}</span>
+                <div className="text-xs sm:text-sm text-slate-600 mt-2 font-mono flex items-center justify-between">
+                  <span>Operator: {m.operator}</span>
+                  <span className="font-semibold text-slate-900">{m.line}</span>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
 
-              {isDown ? (
-                <button
-                  onClick={() => handleResolve(m.id)}
-                  className="w-full py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors"
-                >
-                  Mark Repaired & Resume
-                </button>
-              ) : (
-                <button
-                  onClick={() => handleTriggerBreakdown(m.id)}
-                  className="w-full py-2 rounded-xl bg-white hover:bg-red-50 border border-slate-200 text-red-600 font-semibold text-xs transition-colors flex items-center justify-center gap-1"
-                >
-                  <AlertTriangle className="w-3.5 h-3.5" />
-                  <span>Simulate 1-Tap Breakdown</span>
-                </button>
-              )}
+        {/* Right Column: Operator Terminal Touch Screen */}
+        <div className="lg:col-span-5 space-y-4">
+          <div className="p-6 rounded-[24px] bg-slate-900 text-white space-y-5 shadow-xl">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <span className="text-xs sm:text-sm font-mono font-bold text-amber-400">
+                TERMINAL: {activeMachine}
+              </span>
+              <span className="text-xs font-mono text-slate-400">Batch #B-8812</span>
             </div>
-          );
-        })}
-      </div>
 
-      {/* Alert Dispatch Log */}
-      {alertMessage && (
-        <div className="p-4 rounded-2xl bg-slate-900 text-white text-xs font-mono flex items-center gap-2.5 animate-in fade-in">
-          <Bell className="w-4 h-4 text-amber-400 shrink-0" />
-          <span>{alertMessage}</span>
+            {/* Batch Counter */}
+            <div className="text-center py-2 space-y-1">
+              <div className="text-xs font-mono text-slate-400 uppercase">Parts Produced (Current Shift)</div>
+              <div className="text-4xl sm:text-5xl font-black font-mono text-emerald-400">
+                {batchCount} <span className="text-sm font-normal text-slate-400">/ 500 Target</span>
+              </div>
+            </div>
+
+            {/* Big Touch Buttons */}
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={() => setBatchCount((c) => c + 10)}
+                className="py-3.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 font-bold text-xs sm:text-sm font-mono border border-slate-700 transition-all text-center"
+              >
+                +10 Parts Logged
+              </button>
+
+              <button
+                onClick={handleBreakdown}
+                className="py-3.5 px-3 rounded-xl bg-rose-600 hover:bg-rose-700 font-bold text-xs sm:text-sm font-mono transition-all text-center flex items-center justify-center gap-1.5 shadow-md shadow-rose-900/30"
+              >
+                <AlertTriangle className="w-4 h-4" />
+                <span>Report Breakdown</span>
+              </button>
+            </div>
+
+            {breakdownAlert && (
+              <div className="p-4 rounded-xl bg-rose-950/80 border border-rose-600 text-xs sm:text-sm text-rose-200 font-mono space-y-2 animate-in fade-in">
+                <div className="font-bold flex items-center justify-between">
+                  <span>🚨 MAINTENANCE ALERT DISPATCHED</span>
+                  <button onClick={handleReset} className="underline text-xs text-slate-400 hover:text-white">
+                    Clear
+                  </button>
+                </div>
+                <p className="text-xs text-rose-300">
+                  Lead Engineer Suresh notified on WhatsApp (Ticket #MT-409). Timer started for MTTR audit.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

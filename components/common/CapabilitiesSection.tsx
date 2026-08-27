@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2, Terminal, ArrowRight } from "lucide-react";
+import { Layers, ArrowRight, CheckCircle2, Cpu, Sparkles, Terminal } from "lucide-react";
 import { IndustryVertical } from "@/data/verticals";
 
 interface CapabilitiesSectionProps {
@@ -11,68 +11,79 @@ interface CapabilitiesSectionProps {
 
 export function CapabilitiesSection({ vertical, onOpenScopeModal }: CapabilitiesSectionProps) {
   return (
-    <section id="capabilities" className="py-20 px-4 sm:px-6 bg-white">
-      <div className="max-w-6xl mx-auto space-y-12">
-        <div className="text-center space-y-3 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-mono font-medium tracking-wide">
-            <Terminal className="w-3.5 h-3.5 text-indigo-600" />
-            CUSTOM SOFTWARE CAPABILITIES
+    <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-slate-50 border-y border-slate-200">
+      <div className="max-w-7xl mx-auto space-y-16">
+        {/* Header */}
+        <div className="text-center space-y-4 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-xs sm:text-sm font-mono font-bold text-indigo-700">
+            <Cpu className="w-4 h-4" />
+            <span>CUSTOM SOFTWARE CAPABILITIES</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 font-display">
-            Modular Systems We Architect & Build For Your Practice
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight font-display">
+            Modular Systems We Build For {vertical.name.split("&")[0].trim()}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600">
-            Every module is engineered specifically for your team, deployed to your private infrastructure, with zero recurring per-user software licensing fees.
+          <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            No cookie-cutter templates. Every engine is designed around your specific team protocols, hardware, and data security requirements.
           </p>
         </div>
 
-        {/* Capabilities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* 4 Custom Capabilities Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {vertical.customCapabilities.map((cap, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-3xl bg-slate-50 border border-slate-200/80 clean-card-hover flex flex-col justify-between space-y-4"
+              className="p-8 sm:p-10 rounded-[32px] bg-white border border-slate-200/90 shadow-sm clean-card-hover space-y-4 flex flex-col justify-between"
             >
-              <div className="space-y-2.5">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full">
-                  {cap.tag}
-                </span>
-                <h3 className="text-base font-bold text-slate-900 leading-snug">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span
+                    className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full"
+                    style={{
+                      backgroundColor: `${vertical.accentHex}15`,
+                      color: vertical.accentHex,
+                    }}
+                  >
+                    {cap.tag}
+                  </span>
+                  <span className="text-xs font-mono text-slate-400 font-semibold">Module #{idx + 1}</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-display">
                   {cap.title}
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                   {cap.description}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-slate-200 flex items-center gap-1.5 text-xs font-semibold text-slate-800">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Production Engineered</span>
+              <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Custom API endpoints & database schemas included</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Integration Banner */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
-          <div className="space-y-1.5 text-center sm:text-left">
-            <div className="text-xs font-mono text-indigo-400 font-semibold uppercase tracking-wider">
-              Bespoke Architecture
+        {/* Discuss Custom Architecture Banner */}
+        <div className="p-10 sm:p-14 rounded-[36px] bg-slate-900 text-white flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl shadow-slate-900/10">
+          <div className="space-y-3 text-center lg:text-left max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-mono text-indigo-300">
+              <Terminal className="w-3.5 h-3.5" />
+              <span>Direct Architecture Discovery</span>
             </div>
-            <h4 className="text-lg sm:text-xl font-bold font-display">
-              Need a custom workflow or existing database migration?
-            </h4>
-            <p className="text-xs text-slate-400 max-w-xl">
-              We audit your existing Excel sheets, paper cards, or third-party databases and engineer a clean, unified migration plan.
+            <h3 className="text-2xl sm:text-4xl font-extrabold font-display">
+              Have a unique workflow or legacy hardware to integrate?
+            </h3>
+            <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
+              We connect with your existing scanners, accounting software, databases, or IoT sensors without breaking your daily operations.
             </p>
           </div>
 
           <button
             onClick={onOpenScopeModal}
-            className="px-6 py-3 rounded-full bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs uppercase tracking-wider transition-all shrink-0 flex items-center gap-2"
+            className="px-9 py-4 rounded-full bg-white hover:bg-slate-100 text-slate-900 font-bold text-sm sm:text-base uppercase tracking-wider transition-all hover:scale-105 shadow-xl shrink-0 flex items-center gap-2.5"
           >
-            <span>Discuss Custom Architecture</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <span>Discuss Architecture</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </div>

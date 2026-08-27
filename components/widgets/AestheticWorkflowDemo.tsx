@@ -1,147 +1,106 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, Eye, ShieldCheck, CheckCircle2, Sliders, Camera, FileCheck } from "lucide-react";
+import { Sparkles, ShieldCheck, CheckCircle2, UserCheck, Eye, Sliders, ArrowRight } from "lucide-react";
 
 export function AestheticWorkflowDemo() {
-  const [selectedConcerns, setSelectedConcerns] = useState<string[]>(["Fine Lines & Forehead", "Acne Texture"]);
-  const [timelineDay, setTimelineDay] = useState<number>(30);
-  const [patientConsent, setPatientConsent] = useState(true);
+  const [selectedConcern, setSelectedConcern] = useState<string>("Melasma & Pigmentation");
+  const [sliderPos, setSliderPos] = useState(50);
 
   const concerns = [
-    { id: "Fine Lines & Forehead", label: "Fine Lines & Wrinkles" },
-    { id: "Acne Texture", label: "Acne Scars & Texture" },
-    { id: "Pigmentation", label: "Melasma & Pigmentation" },
-    { id: "Volume Loss", label: "Contour & Volume Loss" },
+    { name: "Melasma & Pigmentation", protocol: "Q-Switched Nd:YAG Laser + Glutathione Peel", sessions: "4 Sessions (Bi-weekly)" },
+    { name: "Active Acne & Scarring", protocol: "Salicylic Acid Peel + Fractional CO2 Laser", sessions: "6 Sessions (Monthly)" },
+    { name: "Jawline Contouring / Anti-Aging", protocol: "HIFU Ultrasound Lift + G-Point Dermal Fillers", sessions: "Single Session Review" },
   ];
-
-  const protocols = [
-    { name: "Full-Face Anti-Wrinkle Micro-Injections", category: "Injectable", sessions: "Every 4-6 Months" },
-    { name: "Profhilo® Hyaluronic Bio-Remodelling", category: "Skin Quality", sessions: "2-Session Protocol" },
-    { name: "Pico-Genesis Laser Glow", category: "Laser Device", sessions: "3 Sessions" },
-  ];
-
-  const toggleConcern = (c: string) => {
-    setSelectedConcerns((prev) =>
-      prev.includes(c) ? prev.filter((i) => i !== c) : [...prev, c]
-    );
-  };
 
   return (
-    <div className="rounded-3xl bg-white border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+    <div className="rounded-[28px] bg-white border border-slate-200 p-6 sm:p-10 shadow-sm space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-rose-700 text-xs font-mono font-medium">
-            <Sparkles className="w-3.5 h-3.5" />
-            CONSULTATION & PHOTO VAULT SIMULATOR
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-50 border border-rose-100 text-rose-700 text-xs sm:text-sm font-mono font-bold">
+            <Sparkles className="w-4 h-4" />
+            AESTHETIC INTAKE & PROTOCOL VISUALIZER
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-display mt-1">
-            Clinical Consultation Roadmap & Standardized Photo Alignment
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mt-2">
+            Clinical Consultation Roadmap & Standardized Before/After Photo Vault
           </h3>
-          <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-            Test how aesthetic practitioners record facial protocols and maintain encrypted, standardized before/after patient case records.
+          <p className="text-sm sm:text-base text-slate-500 mt-1">
+            Test how aesthetic dermatologists guide patients from skin concern selection to structured clinical protocol recommendations.
           </p>
         </div>
 
-        <div className="flex items-center gap-1.5 text-xs text-slate-600 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full font-mono">
+        <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-600 bg-slate-50 border border-slate-200 px-4 py-2 rounded-full font-mono shrink-0">
           <ShieldCheck className="w-4 h-4 text-rose-600" />
-          <span>HIPAA Encrypted Photo Vault</span>
+          <span>HIPAA Encrypted Photos</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Left Column: Clinical Protocol Selection */}
-        <div className="lg:col-span-7 space-y-5">
-          <div>
-            <label className="text-xs font-bold text-slate-700 uppercase font-mono tracking-wider block mb-2">
-              1. Patient Aesthetic Objectives
-            </label>
-            <div className="grid grid-cols-2 gap-2">
-              {concerns.map((c) => {
-                const active = selectedConcerns.includes(c.id);
-                return (
-                  <button
-                    key={c.id}
-                    onClick={() => toggleConcern(c.id)}
-                    className={`p-3 rounded-2xl text-left border text-xs transition-all ${
-                      active
-                        ? "bg-rose-50 border-rose-500 text-slate-900 font-semibold"
-                        : "bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300"
-                    }`}
-                  >
-                    <span>{active ? "✓ " : "+ "}</span>
-                    {c.label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div>
-            <label className="text-xs font-bold text-slate-700 uppercase font-mono tracking-wider block mb-2">
-              2. Recommended Clinical Protocols
-            </label>
-            <div className="space-y-2">
-              {protocols.map((p) => (
-                <div
-                  key={p.name}
-                  className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs"
-                >
-                  <div>
-                    <div className="font-bold text-slate-900">{p.name}</div>
-                    <div className="text-[11px] text-slate-500 mt-0.5 font-mono">
-                      Category: <span className="text-rose-700 font-medium">{p.category}</span> • {p.sessions}
-                    </div>
-                  </div>
-                  <span className="text-[11px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                    Active Plan
-                  </span>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Left Column: Concern Selector */}
+        <div className="lg:col-span-7 space-y-4">
+          <label className="text-xs sm:text-sm font-bold text-slate-700 uppercase font-mono tracking-wider block">
+            Step 1: Patient Primary Concern Selection
+          </label>
+          <div className="space-y-3">
+            {concerns.map((c) => (
+              <div
+                key={c.name}
+                onClick={() => setSelectedConcern(c.name)}
+                className={`p-5 rounded-2xl border-2 cursor-pointer transition-all ${
+                  selectedConcern === c.name
+                    ? "border-rose-400 bg-rose-50/50 shadow-md"
+                    : "border-slate-200 bg-slate-50 hover:border-slate-300"
+                }`}
+              >
+                <div className="font-bold text-base sm:text-lg text-slate-900">{c.name}</div>
+                <div className="text-xs sm:text-sm text-slate-600 mt-2 font-mono flex items-center justify-between">
+                  <span className="text-rose-700 font-bold">{c.protocol}</span>
+                  <span className="text-slate-500">{c.sessions}</span>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Right Column: Photo Progression Slider */}
+        {/* Right Column: Treatment Roadmap Card */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="p-5 rounded-3xl bg-slate-50 border border-slate-200 space-y-3">
-            <div className="flex items-center justify-between text-xs font-bold text-slate-900">
-              <span className="flex items-center gap-1.5 font-mono">
-                <Camera className="w-3.5 h-3.5 text-rose-600" />
-                Case Progression Radar
-              </span>
-              <span className="font-mono text-rose-700">Day {timelineDay}</span>
+          <div className="p-6 rounded-[24px] bg-slate-50 border border-slate-200 space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200 text-xs sm:text-sm font-bold text-slate-900">
+              <span>Standardized Photo Progression</span>
+              <span className="text-xs font-mono text-rose-700">Consent Verified</span>
             </div>
 
-            <input
-              type="range"
-              min="0"
-              max="90"
-              step="30"
-              value={timelineDay}
-              onChange={(e) => setTimelineDay(Number(e.target.value))}
-              className="w-full accent-rose-600 cursor-pointer"
-            />
-
-            <div className="flex justify-between text-[10px] text-slate-500 font-mono">
-              <span>Day 0 (Baseline)</span>
-              <span>Day 30 (Collagen Peak)</span>
-              <span>Day 90 (Final Result)</span>
+            {/* Slider Mockup */}
+            <div className="relative rounded-2xl overflow-hidden bg-slate-900 h-44 flex items-center justify-center text-white border border-slate-700">
+              <div className="absolute inset-0 flex items-center justify-between px-6 text-sm font-mono font-bold">
+                <span className="bg-slate-950/70 px-3 py-1 rounded-lg">BASELINE (DAY 1)</span>
+                <span className="bg-rose-950/70 px-3 py-1 rounded-lg text-rose-300">SESSION 4 (WEEK 8)</span>
+              </div>
+              <div
+                className="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize"
+                style={{ left: `${sliderPos}%` }}
+              />
             </div>
 
-            <div className="p-3 rounded-2xl bg-white border border-slate-200 text-xs text-slate-700 leading-relaxed">
-              {timelineDay === 0 && "📌 Baseline: Standardized 3D skin analysis, moisture metrics, and micro-injection placement mapping."}
-              {timelineDay === 30 && "✨ Day 30: Neocollagenesis active. Noticeable 42% reduction in fine lines and luminous skin hydration."}
-              {timelineDay === 90 && "👑 Day 90: Maximum structural firmness, refined pore architecture, and long-lasting contour retention."}
+            <div className="space-y-2">
+              <div className="flex justify-between text-xs sm:text-sm text-slate-600 font-mono">
+                <span>Slide to Compare Progression:</span>
+                <span className="font-bold text-slate-900">{sliderPos}% Comparison</span>
+              </div>
+              <input
+                type="range"
+                min="10"
+                max="90"
+                value={sliderPos}
+                onChange={(e) => setSliderPos(Number(e.target.value))}
+                className="w-full accent-rose-600 cursor-pointer"
+              />
             </div>
 
-            <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
-              <span className="flex items-center gap-1">
-                <FileCheck className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Patient Anonymized Consent:</span>
-              </span>
-              <span className="font-mono text-slate-900 font-semibold">Verified ✓</span>
+            <div className="pt-2 text-xs sm:text-sm text-emerald-800 font-mono flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>Ghost overlay ensures precise camera focal angle match</span>
             </div>
           </div>
         </div>

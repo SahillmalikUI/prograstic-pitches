@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ShieldCheck, Cpu, ArrowRight } from "lucide-react";
+import { ArrowRight, Terminal, Sparkles, CheckCircle2, Clock } from "lucide-react";
 
 interface ProcessTimelineProps {
   onOpenScopeModal: () => void;
@@ -10,89 +10,88 @@ interface ProcessTimelineProps {
 export function ProcessTimeline({ onOpenScopeModal }: ProcessTimelineProps) {
   const steps = [
     {
-      number: "01",
-      title: "Discovery & Workflow Audit",
-      timeline: "Week 1",
-      description: "We analyze your staff's daily data entry friction, communication bottlenecks, and operational drop-off points."
+      num: "01",
+      title: "15-Minute Architecture Discovery",
+      desc: "We review your operational bottlenecks, current software gaps, and map the exact software modules you need. No sales pitches, just engineering scope.",
+      timing: "Day 1",
     },
     {
-      number: "02",
-      title: "Systems Architecture & Live Prototype",
-      timeline: "Week 1 - 2",
-      description: "We architect the database schema and build a working interactive prototype so you test the exact flow before final code."
+      num: "02",
+      title: "Interactive Prototype & UX Validation",
+      desc: "We build a clickable prototype of your core workflow (intake, queue, doctor screen, or machine board) so your team can test and approve the feel.",
+      timing: "Day 3 - 5",
     },
     {
-      number: "03",
-      title: "Agile Sprint Engineering",
-      timeline: "Weeks 2 - 3",
-      description: "Senior full-stack engineers build the custom platform with continuous weekly staging updates and API integrations."
+      num: "03",
+      title: "High-Speed Full-Stack Development",
+      desc: "We write clean, production-grade Next.js, FastAPI/Node, and PostgreSQL code with encrypted database security and external API integrations.",
+      timing: "Day 6 - 12",
     },
     {
-      number: "04",
-      title: "Staff Onboarding & Continuous Evolution",
-      timeline: "Week 4 & Ongoing",
-      description: "Zero-downtime deployment, interactive staff training, and continuous feature expansion backed by our engineering SLA."
-    }
+      num: "04",
+      title: "Staff Onboarding & Production Go-Live",
+      desc: "We deploy on your private cloud or managed infrastructure, train your floor staff, and ensure seamless go-live with zero operational downtime.",
+      timing: "Day 14 - 30",
+    },
   ];
 
   return (
-    <section id="process" className="py-20 px-4 sm:px-6 bg-white border-t border-slate-200">
-      <div className="max-w-6xl mx-auto space-y-12">
-        <div className="text-center space-y-3 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-mono font-medium tracking-wide">
-            <Cpu className="w-3.5 h-3.5 text-indigo-600" />
-            HOW WE DELIVER
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 font-display">
-            A Fast, Direct 4-Step Engineering Process
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600">
-            From initial operational audit to live production software in 14-30 days.
-          </p>
+    <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
+      {/* Header */}
+      <div className="text-center space-y-4 max-w-4xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100 text-xs sm:text-sm font-mono font-bold text-emerald-800">
+          <Clock className="w-4 h-4 text-emerald-600" />
+          <span>AGILE 14-DAY SPRINT DELIVERY</span>
         </div>
+        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight font-display">
+          From Concept To Production in 14 Days
+        </h2>
+        <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          Our senior builders work in dedicated 2-week execution sprints to deliver functional software directly into your staff's hands.
+        </p>
+      </div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((s) => (
-            <div
-              key={s.number}
-              className="p-6 rounded-3xl bg-slate-50 border border-slate-200/80 clean-card-hover flex flex-col justify-between space-y-4"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-black font-display text-slate-900">
-                    {s.number}
-                  </span>
-                  <span className="text-[11px] font-mono text-slate-500 bg-white px-2 py-0.5 rounded-full border border-slate-200">
-                    {s.timeline}
-                  </span>
-                </div>
-                <h3 className="text-base font-bold text-slate-900 leading-snug">
-                  {s.title}
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  {s.description}
-                </p>
-              </div>
-
-              <div className="pt-2 border-t border-slate-200 text-slate-700 text-[11px] font-mono flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Zero Department Handoffs</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom Scope CTA */}
-        <div className="text-center pt-4">
-          <button
-            onClick={onOpenScopeModal}
-            className="px-8 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs uppercase tracking-wider transition-all hover:scale-105 shadow-md shadow-slate-900/10 inline-flex items-center gap-2"
+      {/* Step Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map((step) => (
+          <div
+            key={step.num}
+            className="p-8 rounded-[32px] bg-slate-50 border border-slate-200/90 shadow-sm clean-card-hover space-y-5 flex flex-col justify-between"
           >
-            <span>Talk to the Engineering Team</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-3xl font-black font-display text-indigo-600">
+                  {step.num}
+                </span>
+                <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700">
+                  {step.timing}
+                </span>
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 font-display">
+                {step.title}
+              </h3>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                {step.desc}
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-slate-200/60 flex items-center gap-2 text-xs sm:text-sm font-semibold text-emerald-700">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>Full Source Code Handover</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* CTA Box */}
+      <div className="text-center pt-4">
+        <button
+          onClick={onOpenScopeModal}
+          className="px-10 py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base uppercase tracking-wider transition-all hover:scale-105 shadow-xl shadow-slate-900/10 inline-flex items-center gap-3"
+        >
+          <span>Kick Off Your 14-Day Sprint</span>
+          <ArrowRight className="w-5 h-5" />
+        </button>
       </div>
     </section>
   );
