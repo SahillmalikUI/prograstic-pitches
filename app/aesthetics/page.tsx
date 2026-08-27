@@ -9,7 +9,7 @@ import { CapabilitiesSection } from "@/components/common/CapabilitiesSection";
 import { StudioVsOthers } from "@/components/common/StudioVsOthers";
 import { ProcessTimeline } from "@/components/common/ProcessTimeline";
 import { DiscoveryModal } from "@/components/common/DiscoveryModal";
-import { AestheticWorkflowDemo } from "@/components/widgets/AestheticWorkflowDemo";
+import { FaceScrollAestheticDemo } from "@/components/widgets/FaceScrollAestheticDemo";
 import { VERTICALS } from "@/data/verticals";
 
 export default function AestheticsPage() {
@@ -20,9 +20,9 @@ export default function AestheticsPage() {
     <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-slate-900 selection:text-white">
       <Navbar vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
-      <main className="flex-1 space-y-16">
+      <main className="flex-1 space-y-20">
         <CleanHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)}>
-          <AestheticWorkflowDemo />
+          <FaceScrollAestheticDemo />
         </CleanHero>
 
         <MissingLoopSection vertical={vertical} />
