@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #FFFFFF;
+    --bg-subtle: #F8FAFC;
+    --surface: #FFFFFF;
+    --surface-card: #F8FAFC;
+    --surface-border: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #64748B;
+    --accent: #4F46E5;
+    --accent-hover: #4338CA;
+    --accent-light: #EEF2FF;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #0F172A;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+  }
+}
+
+/* Prograstic Clean Floating Glass Panels */
+.clean-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+}
+
+.clean-card-hover {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clean-card-hover:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+/* Subtle background grid pattern like prograstic.com */
+.bg-grid-prograstic {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Subtle Radial Hero Glow */
+.hero-glow-indigo {
+  background: radial-gradient(circle at 50% -20%, rgba(79, 70, 229, 0.08) 0%, transparent 60%);
+}
+
+.hero-glow-teal {
+  background: radial-gradient(circle at 50% -20%, rgba(13, 148, 136, 0.08) 0%, transparent 60%);
+}
+
+.hero-glow-blue {
+  background: radial-gradient(circle at 50% -20%, rgba(37, 99, 235, 0.08) 0%, transparent 60%);
+}
+
+.hero-glow-rose {
+  background: radial-gradient(circle at 50% -20%, rgba(225, 29, 72, 0.08) 0%, transparent 60%);
+}
+
+.hero-glow-amber {
+  background: radial-gradient(circle at 50% -20%, rgba(217, 119, 6, 0.08) 0%, transparent 60%);
+}
+
+/* Clean Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
