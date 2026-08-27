@@ -1,186 +1,274 @@
 "use client";
 
-import React, { useState } from "react";
-import { GraduationCap, ShieldCheck, CheckCircle2, ChevronRight, ChevronLeft, FileText, Stamp, Award, Plane, BookOpen } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { BookOpen, CheckCircle2, ShieldCheck, Award, FileText, Plane, Sparkles, ArrowDown } from "lucide-react";
 
 export function BookScrollEducationDemo() {
-  const [currentPage, setCurrentPage] = useState<1 | 2 | 3>(1);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const totalScrollDistance = rect.height - windowHeight;
+
+      if (totalScrollDistance <= 0) return;
+
+      // How far down the container is scrolled (0 to 1)
+      const currentScroll = -rect.top;
+      const progress = Math.min(Math.max(currentScroll / totalScrollDistance, 0), 1);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Calculate page 1 & 2 rotation angles (0 to -180 deg) based on scrollProgress
+  // Phase 1 (0 to 0.5): Flip Leaf 1 (Student Profile -> University Offers)
+  // Phase 2 (0.5 to 1.0): Flip Leaf 2 (Offers -> Embassy Visa Grant)
+  const leaf1Rotation = Math.min(Math.max((scrollProgress - 0.05) / 0.4 * -180, -180), 0);
+  const leaf2Rotation = Math.min(Math.max((scrollProgress - 0.52) / 0.4 * -180, -180), 0);
+
+  const activeStageName =
+    scrollProgress < 0.35
+      ? "PAGE 1: Student Intake & IELTS TRF"
+      : scrollProgress < 0.7
+      ? "PAGE 2: Official University Offer Letters"
+      : "PAGE 3: Embassy Visa Grant & CAS";
 
   return (
-    <div className="rounded-[32px] bg-white border border-slate-200 p-6 sm:p-10 shadow-xl space-y-8">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs sm:text-sm font-mono font-bold">
-            <BookOpen className="w-4 h-4" />
-            <span>3D FLIPPING ADMISSIONS DOSSIER</span>
+    <div ref={containerRef} className="relative h-[250vh] w-full">
+      {/* Sticky Book Viewport */}
+      <div className="sticky top-20 w-full min-h-[580px] sm:min-h-[640px] flex flex-col justify-between p-4 sm:p-8 bg-slate-900 rounded-[36px] border border-slate-800 shadow-2xl overflow-hidden">
+        {/* Background Ambient Glow */}
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Top Control & Scroll Status Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800 relative z-20">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs sm:text-sm font-mono font-bold">
+              <BookOpen className="w-4 h-4 text-blue-400" />
+              <span>REAL 3D SCROLL-DRIVEN NOTEBOOK</span>
+            </div>
+            <h3 className="text-xl sm:text-3xl font-extrabold text-white font-display mt-1">
+              Scroll Down To Turn The Pages
+            </h3>
           </div>
-          <h3 className="text-2xl sm:text-4xl font-extrabold text-slate-900 font-display mt-2">
-            Interactive Student Application & Visa Page-Turner
-          </h3>
-          <p className="text-sm sm:text-base text-slate-500 mt-1">
-            Flip through the verified pages of a live student admissions journey from IELTS intake to Embassy Visa approval.
-          </p>
+
+          <div className="flex items-center gap-3 font-mono text-xs sm:text-sm">
+            <span className="text-slate-400 hidden sm:inline">Active Page:</span>
+            <span className="px-3.5 py-1.5 rounded-full bg-blue-600 text-white font-bold shadow-md shadow-blue-900/30 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+              <span>{activeStageName}</span>
+            </span>
+          </div>
         </div>
 
-        {/* Page Switcher Buttons */}
-        <div className="flex items-center gap-2 self-start sm:self-auto font-mono text-xs sm:text-sm">
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1) as 1 | 2 | 3)}
-            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 disabled:opacity-30 text-slate-700 flex items-center gap-1 font-semibold transition-colors"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            <span>Prev</span>
-          </button>
-          <span className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-bold">
-            Page {currentPage} / 3
-          </span>
-          <button
-            disabled={currentPage === 3}
-            onClick={() => setCurrentPage((p) => Math.min(3, p + 1) as 1 | 2 | 3)}
-            className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-30 text-white flex items-center gap-1 font-semibold shadow-md transition-colors"
-          >
-            <span>Next</span>
-            <ChevronRight className="w-4 h-4" />
-          </button>
+        {/* Center: The Realistic 3D Physical Notebook Stage */}
+        <div className="my-auto py-6 flex items-center justify-center relative z-10 [perspective:1600px]">
+          {/* The Open Notebook Book Case */}
+          <div className="relative w-full max-w-4xl h-[380px] sm:h-[430px] rounded-3xl bg-[#0F172A] border-4 border-slate-800 shadow-[0_25px_60px_rgba(0,0,0,0.6)] flex items-stretch overflow-visible">
+            {/* Spiral Spine Ring Markers in the Center */}
+            <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-8 z-40 flex flex-col justify-around items-center pointer-events-none">
+              {Array.from({ length: 10 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="w-7 h-3 rounded-full bg-gradient-to-r from-slate-400 via-slate-200 to-slate-500 border border-slate-600 shadow-md transform -rotate-6"
+                />
+              ))}
+            </div>
+
+            {/* LEFT STATIC PAGE: Official Consultancy Header / Cover Spine */}
+            <div className="w-1/2 h-full bg-[#FAF9F6] rounded-l-2xl p-5 sm:p-7 border-r border-slate-300 shadow-inner flex flex-col justify-between text-slate-800">
+              <div className="space-y-2 border-b border-slate-200 pb-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                    ADMISSIONS DOSSIER 2026
+                  </span>
+                  <span className="text-[10px] font-mono text-slate-400">REF: UK-8812</span>
+                </div>
+                <h4 className="text-base sm:text-xl font-extrabold text-slate-900 font-display">
+                  Global Admissions Journey
+                </h4>
+                <p className="text-[11px] sm:text-xs text-slate-500">
+                  Candidate: <strong className="text-slate-900">Harpreet Singh Dhillon</strong>
+                </p>
+              </div>
+
+              {/* Progress Milestones Checklist on Left Page */}
+              <div className="space-y-2 text-xs font-mono">
+                <div className={`p-2.5 rounded-xl border transition-all flex items-center justify-between ${
+                  scrollProgress >= 0.05 ? "bg-emerald-50 border-emerald-200 text-emerald-900 font-bold" : "bg-white border-slate-200 text-slate-500"
+                }`}>
+                  <span>1. Intake & IELTS TRF (7.5)</span>
+                  <span>{scrollProgress >= 0.05 ? "✓ Complete" : "Pending"}</span>
+                </div>
+
+                <div className={`p-2.5 rounded-xl border transition-all flex items-center justify-between ${
+                  scrollProgress >= 0.45 ? "bg-emerald-50 border-emerald-200 text-emerald-900 font-bold" : "bg-white border-slate-200 text-slate-500"
+                }`}>
+                  <span>2. Unconditional Offers (3)</span>
+                  <span>{scrollProgress >= 0.45 ? "✓ Complete" : "In Progress"}</span>
+                </div>
+
+                <div className={`p-2.5 rounded-xl border transition-all flex items-center justify-between ${
+                  scrollProgress >= 0.85 ? "bg-emerald-50 border-emerald-200 text-emerald-900 font-bold" : "bg-white border-slate-200 text-slate-500"
+                }`}>
+                  <span>3. Embassy Visa (Tier 4)</span>
+                  <span>{scrollProgress >= 0.85 ? "✓ Issued ✈️" : "Queued"}</span>
+                </div>
+              </div>
+
+              <div className="text-[10px] text-slate-400 font-mono flex items-center gap-1.5 border-t border-slate-200 pt-2">
+                <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
+                <span>Centralized Secure Admissions Vault</span>
+              </div>
+            </div>
+
+            {/* RIGHT BASE PAGE (The final underneath page: Visa Grant & CAS) */}
+            <div className="w-1/2 h-full bg-[#FAF9F6] rounded-r-2xl p-5 sm:p-7 shadow-inner flex flex-col justify-between text-slate-800">
+              <div className="space-y-2 border-b border-slate-200 pb-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200">
+                    STAGE 03 • FINAL
+                  </span>
+                  <span className="text-[10px] font-mono text-emerald-700 font-bold">APPROVED ✈️</span>
+                </div>
+                <h4 className="text-base sm:text-xl font-extrabold text-slate-900 font-display">
+                  UKVI Visa Grant & CAS Lodgement
+                </h4>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-300 space-y-2">
+                <div className="flex items-center justify-between text-xs font-mono font-bold text-emerald-950">
+                  <span className="flex items-center gap-1.5">
+                    <Plane className="w-4 h-4 text-emerald-600" />
+                    <span>CAS: E4G8K991023</span>
+                  </span>
+                  <span>Manchester UK</span>
+                </div>
+                <p className="text-[11px] text-emerald-900 font-mono leading-relaxed">
+                  Visa Grant Letter issued. Biometrics verified. Scheduled flight departure: September 14, 2026.
+                </p>
+              </div>
+
+              <div className="text-[10px] text-slate-400 font-mono flex items-center justify-end gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <span>All documents synced to student mobile app</span>
+              </div>
+            </div>
+
+            {/* 3D FLIPPING LEAF 2: University Offers (Rotates on 2nd half of scroll) */}
+            <div
+              className="absolute top-0 bottom-0 left-1/2 w-1/2 h-full origin-left [transform-style:preserve-3d] transition-transform duration-100 ease-out pointer-events-none z-30"
+              style={{
+                transform: `rotateY(${leaf2Rotation}deg)`,
+              }}
+            >
+              {/* Front of Leaf 2 (University Offers) */}
+              <div className="absolute inset-0 w-full h-full bg-[#FAF9F6] rounded-r-2xl p-5 sm:p-7 shadow-2xl border-l border-slate-300 flex flex-col justify-between text-slate-800 [backface-visibility:hidden]">
+                <div className="space-y-1 border-b border-slate-200 pb-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] sm:text-xs font-mono font-bold text-indigo-800 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
+                      STAGE 02 • OFFERS
+                    </span>
+                    <span className="text-[10px] font-mono text-amber-700 font-bold">3 Unconditional</span>
+                  </div>
+                  <h4 className="text-sm sm:text-lg font-extrabold text-slate-900 font-display">
+                    Official University Acceptances
+                  </h4>
+                </div>
+
+                <div className="space-y-2 text-xs">
+                  <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-300">
+                    <div className="font-bold text-emerald-950 text-xs sm:text-sm">Univ. of Manchester (UK)</div>
+                    <div className="text-[11px] text-emerald-800 font-mono">MSc Computer Science • Unconditional ✓</div>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                    <div className="font-bold text-slate-900 text-xs sm:text-sm">Univ. of Warwick (UK)</div>
+                    <div className="text-[11px] text-slate-500 font-mono">MSc Data Analytics • Offered</div>
+                  </div>
+                </div>
+
+                <div className="text-[10px] font-mono text-blue-700 flex items-center justify-end gap-1">
+                  <span>Keep scrolling for Visa Stamp ➔</span>
+                </div>
+              </div>
+
+              {/* Back of Leaf 2 (Flipped texture) */}
+              <div className="absolute inset-0 w-full h-full bg-[#F3F4F6] rounded-l-2xl p-5 shadow-2xl flex items-center justify-center text-slate-400 font-mono text-xs [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                <span>[ Official University Verification Stamp Seal ]</span>
+              </div>
+            </div>
+
+            {/* 3D FLIPPING LEAF 1: Student Profile & IELTS (Rotates on 1st half of scroll) */}
+            <div
+              className="absolute top-0 bottom-0 left-1/2 w-1/2 h-full origin-left [transform-style:preserve-3d] transition-transform duration-100 ease-out pointer-events-none z-30"
+              style={{
+                transform: `rotateY(${leaf1Rotation}deg)`,
+              }}
+            >
+              {/* Front of Leaf 1 (Initial Intake & IELTS) */}
+              <div className="absolute inset-0 w-full h-full bg-[#FAF9F6] rounded-r-2xl p-5 sm:p-7 shadow-2xl border-l border-slate-300 flex flex-col justify-between text-slate-800 [backface-visibility:hidden]">
+                <div className="space-y-1 border-b border-slate-200 pb-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] sm:text-xs font-mono font-bold text-blue-800 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                      STAGE 01 • INTAKE
+                    </span>
+                    <span className="text-[10px] font-mono text-emerald-700 font-bold">IELTS Band 7.5</span>
+                  </div>
+                  <h4 className="text-sm sm:text-lg font-extrabold text-slate-900 font-display">
+                    Academic Scores & Transcripts
+                  </h4>
+                </div>
+
+                <div className="space-y-2 text-xs">
+                  <div className="p-2.5 rounded-xl bg-blue-50 border border-blue-200">
+                    <div className="font-bold text-blue-950 text-xs sm:text-sm">IELTS Academic Test Report</div>
+                    <div className="text-[11px] text-blue-800 font-mono">Listening 8.5 • Reading 8.0 • Writing 7.0 • Speaking 7.0</div>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                    <div className="font-bold text-slate-900 text-xs sm:text-sm">Statement of Purpose (SOP)</div>
+                    <div className="text-[11px] text-slate-600">Specialization in Distributed Systems finalized.</div>
+                  </div>
+                </div>
+
+                <div className="text-[10px] font-mono text-blue-700 flex items-center justify-end gap-1">
+                  <span>Scroll down to turn page ➔</span>
+                </div>
+              </div>
+
+              {/* Back of Leaf 1 (Flipped texture) */}
+              <div className="absolute inset-0 w-full h-full bg-[#F3F4F6] rounded-l-2xl p-5 shadow-2xl flex items-center justify-center text-slate-400 font-mono text-xs [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                <span>[ Verified IELTS British Council Verification Seal ]</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* 3D Book Layout Container */}
-      <div className="relative min-h-[440px] flex items-center justify-center p-2 sm:p-6 bg-slate-50 rounded-[28px] border border-slate-200/90 shadow-inner">
-        {/* Page 1: Student Profile & IELTS Academic Transcript */}
-        {currentPage === 1 && (
-          <div className="w-full max-w-3xl bg-white rounded-2xl border-2 border-slate-200 p-6 sm:p-8 shadow-xl space-y-6 animate-in fade-in slide-in-from-left-4">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-200">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold font-mono">
-                  01
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-slate-900">STUDENT PROFILE & ACADEMIC TRANSCRIPT</div>
-                  <div className="text-xs text-slate-500 font-mono">File #UK-2026-8812 • Verified by Senior Counselor</div>
-                </div>
-              </div>
-              <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                100% Verified ✓
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
-                <div className="text-slate-400 font-mono text-xs uppercase">Student Name</div>
-                <div className="font-bold text-slate-900 text-base">Harpreet Singh Dhillon</div>
-                <div className="text-slate-500 font-mono text-xs">B.Tech Computer Science (CGPA: 8.92)</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 space-y-1">
-                <div className="text-blue-600 font-mono text-xs uppercase font-bold">IELTS Academic Score</div>
-                <div className="font-extrabold text-blue-950 text-xl font-display">Overall Band 7.5</div>
-                <div className="text-blue-700 font-mono text-xs">L: 8.5 • R: 8.0 • W: 7.0 • S: 7.0</div>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-              <div className="text-xs font-mono font-bold text-slate-700 uppercase">Statement of Purpose (SOP) Status:</div>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
-                "Specialization in Distributed Systems & AI. Draft v3 finalized by Senior Admissions Editor. Zero grammatical anomalies."
-              </p>
-            </div>
+        {/* Bottom Interactive Scroll Indicator Bar */}
+        <div className="flex items-center justify-between pt-3 border-t border-slate-800 font-mono text-xs text-slate-400 relative z-20">
+          <div className="flex items-center gap-2">
+            <ArrowDown className="w-4 h-4 text-blue-400 animate-bounce" />
+            <span>Scroll smoothly to flip through the pages</span>
           </div>
-        )}
 
-        {/* Page 2: Official University Offer Letters */}
-        {currentPage === 2 && (
-          <div className="w-full max-w-3xl bg-white rounded-2xl border-2 border-slate-200 p-6 sm:p-8 shadow-xl space-y-6 animate-in fade-in slide-in-from-right-4">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-200">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold font-mono">
-                  02
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-slate-900">OFFICIAL UNIVERSITY ACCEPTANCES & OFFERS</div>
-                  <div className="text-xs text-slate-500 font-mono">3 Unconditional Offers Received</div>
-                </div>
-              </div>
-              <span className="text-xs font-mono font-bold text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-                Gold Acceptance Stamp 🏆
-              </span>
+          <div className="flex items-center gap-3">
+            <span>Scroll Progress:</span>
+            <div className="w-28 sm:w-40 h-2 bg-slate-800 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-blue-500 rounded-full transition-all duration-75"
+                style={{ width: `${scrollProgress * 100}%` }}
+              />
             </div>
-
-            <div className="space-y-3 text-xs sm:text-sm">
-              <div className="p-4 rounded-xl bg-emerald-50 border-2 border-emerald-300 flex items-center justify-between">
-                <div>
-                  <div className="font-bold text-emerald-950 text-base">University of Manchester (UK)</div>
-                  <div className="text-emerald-800 font-mono text-xs">MSc Advanced Computer Science • Unconditional Offer</div>
-                </div>
-                <span className="font-mono text-xs font-bold text-emerald-700 bg-white px-3 py-1 rounded-full border border-emerald-300">
-                  ACCEPTED & DEPOSIT PAID
-                </span>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
-                <div>
-                  <div className="font-bold text-slate-900">University of Warwick (UK)</div>
-                  <div className="text-slate-500 font-mono text-xs">MSc Data Analytics • Unconditional Offer</div>
-                </div>
-                <span className="font-mono text-xs text-slate-600 bg-white px-2.5 py-1 rounded-full border border-slate-200">
-                  Offered
-                </span>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
-                <div>
-                  <div className="font-bold text-slate-900">University of Melbourne (Australia)</div>
-                  <div className="text-slate-500 font-mono text-xs">Master of Information Technology • Conditional Offer</div>
-                </div>
-                <span className="font-mono text-xs text-slate-600 bg-white px-2.5 py-1 rounded-full border border-slate-200">
-                  Offered
-                </span>
-              </div>
-            </div>
+            <span className="text-white font-bold">{Math.round(scrollProgress * 100)}%</span>
           </div>
-        )}
-
-        {/* Page 3: Visa Grant & CAS Certificate */}
-        {currentPage === 3 && (
-          <div className="w-full max-w-3xl bg-white rounded-2xl border-2 border-slate-200 p-6 sm:p-8 shadow-xl space-y-6 animate-in fade-in slide-in-from-right-4">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-200">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold font-mono">
-                  03
-                </div>
-                <div>
-                  <div className="font-bold text-lg text-slate-900">STUDENT VISA (TIER 4) & CAS LODGEMENT</div>
-                  <div className="text-xs text-slate-500 font-mono">UK Visas and Immigration (UKVI) Approved</div>
-                </div>
-              </div>
-              <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                Visa Issued ✈️
-              </span>
-            </div>
-
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-300 space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-emerald-900 font-bold text-base">
-                  <Plane className="w-5 h-5 text-emerald-600" />
-                  <span>CAS Statement: E4G8K991023 (Manchester)</span>
-                </div>
-                <span className="font-mono text-xs font-bold text-emerald-800 bg-white px-2.5 py-1 rounded-full border border-emerald-200">
-                  Biometrics Cleared
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-emerald-800 font-mono leading-relaxed">
-                Visa Reference: GWF0789123 • Flight Departure Window: September 14, 2026 • Pre-Departure Orientation Complete.
-              </p>
-            </div>
-
-            <div className="text-right text-xs font-mono text-slate-500 flex items-center justify-end gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              <span>Full student journey synchronized in consultancy central CRM</span>
-            </div>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
