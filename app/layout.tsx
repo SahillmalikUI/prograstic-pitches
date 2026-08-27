@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -21,17 +21,16 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Prograstic Health — Engineering-Led Healthcare Platforms",
+  title: "Prograstic — Custom Software Engineering Studio",
   description:
-    "Direct-to-builder clinical software engineering. Bespoke multi-chair scheduling, zero-wait OPD queue engines, VIP aesthetic funnels, and DICOM diagnostic vaults.",
+    "A small engineering-led studio. No account managers, no handoffs between departments — the person who scopes your project is the person who builds it.",
   keywords: [
-    "Healthcare Software Engineering",
-    "Clinic Operating System",
-    "Dental Booking WhatsApp Engine",
-    "Hospital OPD Queue Manager",
-    "Aesthetic Clinic Treatment Visualizer",
-    "Cloud DICOM Diagnostic Vault",
     "Prograstic Software Studio",
+    "Custom Software Engineering",
+    "Bespoke Internal Tools",
+    "Hospital Operating Systems",
+    "Dental WhatsApp Scheduling",
+    "Manufacturing Shop Floor Telemetry",
   ],
 };
 
@@ -41,8 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.variable} ${outfit.variable} ${mono.variable} font-sans bg-background text-gray-100 antialiased selection:bg-blue-600 selection:text-white`}>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${jakarta.variable} ${outfit.variable} ${mono.variable} font-sans bg-white text-slate-900 antialiased selection:bg-slate-900 selection:text-white`}>
         {children}
       </body>
     </html>

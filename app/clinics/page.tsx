@@ -21,12 +21,9 @@ export default function ClinicsPage() {
       <Navbar vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
       <main className="flex-1 space-y-16">
-        <CleanHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
-
-        {/* Live Interactive Workflow Preview */}
-        <section className="py-8 px-4 sm:px-6 max-w-6xl mx-auto w-full">
+        <CleanHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)}>
           <ClinicsWorkflowDemo />
-        </section>
+        </CleanHero>
 
         <MissingLoopSection vertical={vertical} />
         <CapabilitiesSection vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
