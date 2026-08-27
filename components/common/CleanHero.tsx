@@ -14,7 +14,7 @@ interface CleanHeroProps {
 
 export function CleanHero({ vertical, onOpenScopeModal, children }: CleanHeroProps) {
   return (
-    <section className={`relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white ${vertical.heroGlowClass}`}>
+    <section className={`relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 bg-white ${vertical.heroGlowClass}`}>
       {/* Subtle Prograstic Grid Background */}
       <div className="absolute inset-0 bg-grid-prograstic opacity-80 pointer-events-none" />
 
