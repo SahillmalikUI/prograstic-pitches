@@ -125,11 +125,11 @@ export default function HubPage() {
         </section>
 
         {/* Industry Pitch Directory */}
-        <section id="industry-directory" className="py-12 px-4 sm:px-6 max-w-6xl mx-auto space-y-10">
+        <section id="industry-directory" className="py-12 px-4 sm:px-6 max-w-6xl mx-auto space-y-10 scroll-mt-24">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-mono font-medium tracking-wide">
               <Layers className="w-3.5 h-3.5 text-indigo-600" />
-              INDUSTRY-SPECIFIC PITCH SITES
+              <span>INDUSTRY-SPECIFIC PITCH SITES</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 font-display">
               Bespoke Software For Your Exact Industry
@@ -185,12 +185,12 @@ export default function HubPage() {
         </section>
 
         {/* Live Interactive Workflow Suite */}
-        <section className="py-16 px-4 sm:px-6 bg-slate-50 border-y border-slate-200">
+        <section id="capabilities" className="py-16 px-4 sm:px-6 bg-slate-50 border-y border-slate-200 scroll-mt-24">
           <div className="max-w-6xl mx-auto space-y-8">
             <div className="text-center space-y-2 max-w-2xl mx-auto">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-800 text-xs font-mono font-medium">
                 <Zap className="w-3.5 h-3.5 text-emerald-600" />
-                INTERACTIVE WORKFLOW PREVIEW
+                <span>INTERACTIVE WORKFLOW PREVIEW</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 font-display">
                 Test Our Live Software Prototypes

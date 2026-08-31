@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Terminal, Menu, X, Layers, Sparkles } from "lucide-react";
+import { ArrowRight, Menu, X, Layers, Sparkles } from "lucide-react";
 import { IndustryVertical } from "@/data/verticals";
 
 interface NavbarProps {
@@ -13,7 +13,6 @@ interface NavbarProps {
 export function Navbar({ vertical, onOpenScopeModal }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Theme check
   const isAesthetics = vertical?.slug === "aesthetics";
   const isDarkVertical = vertical?.slug === "manufacturing" || vertical?.slug === "neurology";
 
@@ -30,56 +29,76 @@ export function Navbar({ vertical, onOpenScopeModal }: NavbarProps) {
       >
         {/* Left: Brand Identity */}
         <div className="flex items-center gap-3">
-          <a
-            href="https://prograstic.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/"
             className="flex items-center gap-2 font-black text-sm tracking-tight transition-opacity hover:opacity-80"
           >
             <span className="w-2.5 h-2.5 rounded-full bg-slate-900 shadow-[0_0_8px_rgba(0,0,0,0.3)]" />
             <span className="font-display uppercase tracking-widest text-xs">PROGRASTIC</span>
-          </a>
+          </Link>
 
           {vertical && (
             <div className="hidden sm:flex items-center gap-1.5 font-mono text-xs text-slate-400">
               <span>/</span>
               <span
-                className="font-bold text-xs px-2 py-0.5 rounded-full"
-                style={{
-                  backgroundColor: `${vertical.accentHex}15`,
-                  color: vertical.accentHex,
-                }}
+                className="font-bold text-xs px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 border border-slate-200"
               >
-                {vertical.slug}
+                {vertical.name}
               </span>
             </div>
           )}
         </div>
 
-        {/* Center: Navigation */}
+        {/* Center: Dynamic Navigation */}
         <nav className="hidden md:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider">
-          <a
-            href="#missing-loop"
-            className="text-slate-600 hover:text-slate-900 transition-colors"
-          >
-            The Missing Loop
-          </a>
-          <a
-            href="#capabilities"
-            className="text-slate-600 hover:text-slate-900 transition-colors"
-          >
-            Capabilities
-          </a>
-          <Link
-            href="/"
-            className="text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1"
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span>All Verticals</span>
-          </Link>
+          {vertical ? (
+            <>
+              <a
+                href="#missing-loop"
+                className="text-slate-600 hover:text-slate-900 transition-colors"
+              >
+                The Missing Loop
+              </a>
+              <a
+                href="#capabilities"
+                className="text-slate-600 hover:text-slate-900 transition-colors"
+              >
+                Capabilities
+              </a>
+              <Link
+                href="/"
+                className="text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1"
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>All Verticals</span>
+              </Link>
+            </>
+          ) : (
+            <>
+              <a
+                href="#industry-directory"
+                className="text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1"
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>All Verticals</span>
+              </a>
+              <a
+                href="#capabilities"
+                className="text-slate-600 hover:text-slate-900 transition-colors"
+              >
+                Live Prototypes
+              </a>
+              <Link
+                href="/hospitals"
+                className="text-blue-600 font-bold hover:text-blue-700 transition-colors"
+              >
+                Hospital OS ➔
+              </Link>
+            </>
+          )}
         </nav>
 
-        {/* Right: CTA */}
+        {/* Right: Action CTA */}
         <div className="flex items-center gap-2.5">
           <button
             onClick={onOpenScopeModal}
@@ -99,31 +118,61 @@ export function Navbar({ vertical, onOpenScopeModal }: NavbarProps) {
         </div>
       </div>
 
+      {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden mt-2 p-5 rounded-3xl border border-slate-200 bg-white shadow-2xl space-y-4 animate-in fade-in slide-in-from-top-2 text-slate-900">
           <div className="flex flex-col space-y-3 font-semibold text-sm">
-            <a
-              href="#missing-loop"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 border-b border-slate-100"
-            >
-              The Missing Loop
-            </a>
-            <a
-              href="#capabilities"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 border-b border-slate-100"
-            >
-              Capabilities
-            </a>
-            <Link
-              href="/"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 flex items-center justify-between"
-            >
-              <span>Explore All Industry Verticals</span>
-              <Layers className="w-4 h-4" />
-            </Link>
+            {vertical ? (
+              <>
+                <a
+                  href="#missing-loop"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 border-b border-slate-100"
+                >
+                  The Missing Loop
+                </a>
+                <a
+                  href="#capabilities"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 border-b border-slate-100"
+                >
+                  Capabilities
+                </a>
+                <Link
+                  href="/"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 flex items-center justify-between"
+                >
+                  <span>All Industry Verticals</span>
+                  <Layers className="w-4 h-4" />
+                </Link>
+              </>
+            ) : (
+              <>
+                <a
+                  href="#industry-directory"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 border-b border-slate-100"
+                >
+                  Browse Industry Verticals
+                </a>
+                <a
+                  href="#capabilities"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 border-b border-slate-100"
+                >
+                  Live Prototypes
+                </a>
+                <Link
+                  href="/hospitals"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 flex items-center justify-between text-blue-600 font-bold"
+                >
+                  <span>Featured: Hospital OS</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}
