@@ -2,144 +2,161 @@
 
 import React from "react";
 import Link from "next/link";
-import { Terminal, ShieldCheck, Cpu, ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { IndustryVertical } from "@/data/verticals";
 
 interface FooterProps {
   vertical?: IndustryVertical;
-  onOpenScopeModal: () => void;
+  onOpenScopeModal?: () => void;
 }
 
 export function Footer({ vertical, onOpenScopeModal }: FooterProps) {
   return (
-    <footer className="border-t border-slate-200 bg-slate-50 pt-16 pb-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
-        {/* Banner: Direct to Builder */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-mono font-medium">
-              <Terminal className="w-3.5 h-3.5" />
-              DIRECT-TO-BUILDER MODEL
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-display">
-              Software, built by the people who ship it.
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              No account managers, no middle-tier handoffs. The senior full-stack engineer who scopes your operational workflow is the person who architects and builds it.
-            </p>
-          </div>
+    <footer className="w-full bg-[#FAFBFD] py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto space-y-8">
+        {/* Floating Prograstic Card with Signature Purple Taped Stickers */}
+        <div className="relative rounded-[32px] sm:rounded-[40px] bg-white border border-slate-200/80 p-8 sm:p-14 shadow-xl shadow-slate-900/5">
+          {/* Purple Tape Sticker Top Left */}
+          <div className="absolute -top-3.5 left-8 sm:left-12 w-12 sm:w-16 h-7 sm:h-8 bg-[#8B5CF6] shadow-md transform -rotate-12 rounded-sm pointer-events-none opacity-90" />
 
-          <button
-            onClick={onOpenScopeModal}
-            className="px-6 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs transition-all hover:scale-105 shadow-md shadow-slate-900/10 shrink-0 flex items-center justify-center gap-2"
-          >
-            <span>Talk to the Engineering Team</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          {/* Purple Tape Sticker Top Right */}
+          <div className="absolute -top-3.5 right-8 sm:right-12 w-12 sm:w-16 h-7 sm:h-8 bg-[#8B5CF6] shadow-md transform rotate-12 rounded-sm pointer-events-none opacity-90" />
+
+          <div className="space-y-12">
+            {/* Top Brand Header */}
+            <div className="space-y-4 max-w-2xl">
+              <a
+                href="https://www.prograstic.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 group"
+              >
+                {/* Prograstic Hexagon Logo Symbol */}
+                <div className="w-8 h-8 rounded-lg bg-slate-950 flex items-center justify-center text-white font-black text-sm">
+                  <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                  </svg>
+                </div>
+                <span className="text-2xl sm:text-3xl font-extrabold font-display tracking-tight text-slate-950">
+                  Prograstic
+                </span>
+              </a>
+
+              <p className="text-base sm:text-lg text-slate-600 font-sans leading-relaxed">
+                A builder community for India's startup ecosystem — founders, operators, and creators shipping together on Prograstic.
+              </p>
+            </div>
+
+            {/* 3 Spacious Columns (ECOSYSTEM, BUILD, STORIES) */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 pt-4 text-sm sm:text-base font-sans">
+              {/* Column 1: ECOSYSTEM */}
+              <div className="space-y-4">
+                <div className="text-xs font-mono font-bold tracking-widest text-slate-400 uppercase">
+                  ECOSYSTEM
+                </div>
+                <ul className="space-y-2.5 text-slate-600 font-medium">
+                  <li>
+                    <a href="https://www.prograstic.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-950 transition-colors">
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.prograstic.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-950 transition-colors">
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.prograstic.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-950 transition-colors">
+                      Community
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.prograstic.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-950 transition-colors">
+                      Startups
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 2: BUILD */}
+              <div className="space-y-4">
+                <div className="text-xs font-mono font-bold tracking-widest text-slate-400 uppercase">
+                  BUILD
+                </div>
+                <ul className="space-y-2.5 text-slate-600 font-medium">
+                  <li>
+                    <a href="https://www.prograstic.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-950 transition-colors">
+                      Services
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.prograstic.com/ideaforge" target="_blank" rel="noopener noreferrer" className="hover:text-slate-950 transition-colors">
+                      Tools
+                    </a>
+                  </li>
+                  <li>
+                    <button
+                      onClick={onOpenScopeModal}
+                      className="hover:text-slate-950 transition-colors text-left"
+                    >
+                      Apply to join
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 3: STORIES */}
+              <div className="space-y-4 col-span-2 md:col-span-1">
+                <div className="text-xs font-mono font-bold tracking-widest text-slate-400 uppercase">
+                  STORIES
+                </div>
+                <ul className="space-y-2.5 text-slate-600 font-medium">
+                  <li>
+                    <a href="https://www.prograstic.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-950 transition-colors">
+                      Digital manga library
+                    </a>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-slate-600">Founder spotlights</span>
+                    <span className="text-[10px] font-mono font-bold uppercase bg-[#EDE9FE] text-[#7C3AED] px-2 py-0.5 rounded-full border border-[#DDD6FE]">
+                      soon
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Links & Info */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold text-xs">
-                P
-              </div>
-              <span className="font-display font-bold text-sm tracking-tight text-slate-900">
-                PROGRASTIC
+        {/* Clean Bottom Copyright & Social Row */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm font-sans text-slate-500 px-4">
+          <div className="flex items-center gap-3 flex-wrap">
+            <span>©2026 Prograstic. All rights reserved.</span>
+            <span className="text-slate-300">•</span>
+            <a href="https://www.prograstic.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">
+              Privacy Policy
+            </a>
+            <span className="text-slate-300">•</span>
+            <div className="flex items-center gap-1.5">
+              <a href="https://www.prograstic.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">
+                Terms
+              </a>
+              <span className="text-[9px] font-mono font-bold uppercase bg-[#EDE9FE] text-[#7C3AED] px-1.5 py-0.2 rounded-full border border-[#DDD6FE]">
+                soon
               </span>
             </div>
-            <p className="text-xs text-slate-600 leading-relaxed max-w-sm">
-              An engineering-led software studio building bespoke internal operating platforms, automated data pipelines, and workflow software.
-            </p>
-            <div className="text-xs font-mono text-slate-500">
-              Bengaluru • Delhi NCR • Chandigarh • Global
-            </div>
           </div>
 
-          <div className="space-y-2">
-            <div className="text-xs font-bold text-slate-900 uppercase font-mono tracking-wider">
-              Studio Service Lines
-            </div>
-            <ul className="space-y-1.5 text-xs text-slate-600">
-              <li>
-                <a
-                  href="https://prograstic.com/services"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-slate-900 flex items-center gap-1 transition-colors"
-                >
-                  <span>Custom Software Engineering</span>
-                  <ArrowUpRight className="w-3 h-3 text-slate-400" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://prograstic.com/services"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-slate-900 flex items-center gap-1 transition-colors"
-                >
-                  <span>UI/UX & Product Design</span>
-                  <ArrowUpRight className="w-3 h-3 text-slate-400" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://prograstic.com/services"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-slate-900 flex items-center gap-1 transition-colors"
-                >
-                  <span>Data Pipelines & Automation</span>
-                  <ArrowUpRight className="w-3 h-3 text-slate-400" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://prograstic.com/services"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-slate-900 flex items-center gap-1 transition-colors"
-                >
-                  <span>Cloud & DevOps Infrastructure</span>
-                  <ArrowUpRight className="w-3 h-3 text-slate-400" />
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="space-y-2">
-            <div className="text-xs font-bold text-slate-900 uppercase font-mono tracking-wider">
-              Guarantees
-            </div>
-            <div className="space-y-2 text-xs text-slate-600">
-              <div className="flex items-center gap-2 text-slate-800 font-medium">
-                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>100% Custom Source Code Ownership</span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-800 font-medium">
-                <Cpu className="w-4 h-4 text-indigo-600 shrink-0" />
-                <span>Zero Per-User Recurring SaaS Tax</span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-800 font-medium">
-                <Terminal className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>14-Day Production Sprints</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div>
-            © {new Date().getFullYear()} Prograstic Technologies Pvt. Ltd. All rights reserved.
-          </div>
-          <div className="flex items-center gap-6">
-            <a href="https://prograstic.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900">
-              prograstic.com
+          {/* Social Icons matching Prograstic */}
+          <div className="flex items-center gap-4 text-slate-700 font-mono text-sm">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-950 transition-colors font-bold">
+              in
             </a>
-            <a href="mailto:hello@prograstic.com" className="hover:text-slate-900">
-              hello@prograstic.com
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-950 transition-colors font-bold">
+              𝕏
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-950 transition-colors font-bold text-xs">
+              IG
             </a>
           </div>
         </div>
