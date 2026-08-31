@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CleanHero } from "@/components/common/CleanHero";
-import { MissingLoopSection } from "@/components/common/MissingLoopSection";
-import { CapabilitiesSection } from "@/components/common/CapabilitiesSection";
+import { BevelHospitalHero } from "@/components/hospitals/BevelHospitalHero";
+import { BevelMissingLoopSection } from "@/components/hospitals/BevelMissingLoopSection";
+import { BevelCapabilitiesSection } from "@/components/hospitals/BevelCapabilitiesSection";
 import { StudioVsOthers } from "@/components/common/StudioVsOthers";
 import { ProcessTimeline } from "@/components/common/ProcessTimeline";
 import { DiscoveryModal } from "@/components/common/DiscoveryModal";
@@ -17,16 +17,16 @@ export default function HospitalsPage() {
   const vertical = VERTICALS.hospitals;
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-slate-900 selection:text-white">
+    <div className="min-h-screen bg-[#080C15] text-white flex flex-col selection:bg-[#00F0FF] selection:text-slate-950">
       <Navbar vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
-      <main className="flex-1 space-y-16">
-        <CleanHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)}>
+      <main className="flex-1 space-y-20">
+        <BevelHospitalHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)}>
           <HospitalWorkflowDemo />
-        </CleanHero>
+        </BevelHospitalHero>
 
-        <MissingLoopSection vertical={vertical} />
-        <CapabilitiesSection vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
+        <BevelMissingLoopSection vertical={vertical} />
+        <BevelCapabilitiesSection vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
         <StudioVsOthers />
         <ProcessTimeline onOpenScopeModal={() => setModalOpen(true)} />
       </main>

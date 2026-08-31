@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CleanHero } from "@/components/common/CleanHero";
-import { MissingLoopSection } from "@/components/common/MissingLoopSection";
-import { CapabilitiesSection } from "@/components/common/CapabilitiesSection";
+import { IndustrialPlantHero } from "@/components/manufacturing/IndustrialPlantHero";
+import { IndustrialMissingLoopSection } from "@/components/manufacturing/IndustrialMissingLoopSection";
+import { IndustrialCapabilitiesSection } from "@/components/manufacturing/IndustrialCapabilitiesSection";
 import { StudioVsOthers } from "@/components/common/StudioVsOthers";
 import { ProcessTimeline } from "@/components/common/ProcessTimeline";
 import { DiscoveryModal } from "@/components/common/DiscoveryModal";
@@ -17,16 +17,16 @@ export default function ManufacturingPage() {
   const vertical = VERTICALS.manufacturing;
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-slate-900 selection:text-white">
+    <div className="min-h-screen bg-[#0F1117] text-white flex flex-col selection:bg-[#FF5500] selection:text-white">
       <Navbar vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
-      <main className="flex-1 space-y-16">
-        <CleanHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)}>
+      <main className="flex-1 space-y-20">
+        <IndustrialPlantHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)}>
           <ManufacturingWorkflowDemo />
-        </CleanHero>
+        </IndustrialPlantHero>
 
-        <MissingLoopSection vertical={vertical} />
-        <CapabilitiesSection vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
+        <IndustrialMissingLoopSection vertical={vertical} />
+        <IndustrialCapabilitiesSection vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
         <StudioVsOthers />
         <ProcessTimeline onOpenScopeModal={() => setModalOpen(true)} />
       </main>

@@ -2,90 +2,157 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --bg: #FFFFFF;
-    --bg-subtle: #F8FAFC;
-    --surface: #FFFFFF;
-    --surface-card: #F8FAFC;
-    --surface-border: #E2E8F0;
-    --text-primary: #0F172A;
-    --text-secondary: #475569;
-    --text-muted: #64748B;
-    --accent: #4F46E5;
-    --accent-hover: #4338CA;
-    --accent-light: #EEF2FF;
-  }
-
-  body {
-    background-color: #FFFFFF;
-    color: #0F172A;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    overflow-x: hidden;
-  }
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 248, 250, 252;
 }
 
-/* Prograstic Clean Floating Glass Panels */
-.clean-card {
+body {
+  color: rgb(var(--foreground-rgb));
   background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  font-feature-settings: "rlig" 1, "calt" 1;
 }
 
+/* Custom Domain Font Utility Classes */
+.font-display {
+  font-family: var(--font-outfit), var(--font-sans), sans-serif;
+}
+
+.font-serif-luxury {
+  font-family: var(--font-cormorant), var(--font-playfair), Georgia, serif;
+}
+
+.font-editorial-heading {
+  font-family: var(--font-playfair), var(--font-cormorant), Georgia, serif;
+}
+
+.font-industrial {
+  font-family: var(--font-space), var(--font-sans), sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+/* Domain Background Tokens */
+.bg-warm-alabaster {
+  background-color: #FAF7F2;
+}
+
+.bg-warm-card {
+  background-color: #FFFFFF;
+  border-color: #EAE3D9;
+}
+
+.text-espresso {
+  color: #1C1917;
+}
+
+.text-warm-muted {
+  color: #78716C;
+}
+
+.bg-deep-obsidian {
+  background-color: #080C15;
+}
+
+.bg-industrial-graphite {
+  background-color: #0F1117;
+}
+
+/* Subtle background patterns */
+.bg-grid-prograstic {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+.bg-grid-dark {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.bg-grid-industrial {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 85, 0, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 85, 0, 0.07) 1px, transparent 1px);
+}
+
+/* Clean Card Hover Effects */
 .clean-card-hover {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .clean-card-hover:hover {
-  border-color: #CBD5E1;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
   transform: translateY(-2px);
+  border-color: rgba(15, 23, 42, 0.2);
+  box-shadow: 0 12px 30px -10px rgba(15, 23, 42, 0.08);
 }
 
-/* Subtle background grid pattern like prograstic.com */
-.bg-grid-prograstic {
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
+.luxury-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Subtle Radial Hero Glow */
-.hero-glow-indigo {
-  background: radial-gradient(circle at 50% -20%, rgba(79, 70, 229, 0.08) 0%, transparent 60%);
+.luxury-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: #C8A97E;
+  box-shadow: 0 16px 36px -10px rgba(200, 169, 126, 0.2);
 }
 
-.hero-glow-teal {
-  background: radial-gradient(circle at 50% -20%, rgba(13, 148, 136, 0.08) 0%, transparent 60%);
+.dark-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark-card-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 12px 30px -10px rgba(0, 240, 255, 0.15);
+}
+
+.industrial-card-hover {
+  transition: all 0.2s ease-out;
+}
+
+.industrial-card-hover:hover {
+  transform: translateY(-2px);
+  border-color: #FF5500;
+  box-shadow: 0 8px 24px -6px rgba(255, 85, 0, 0.25);
+}
+
+/* Subtle Domain Ambient Glows */
+.hero-glow-warm-luxury {
+  background: radial-gradient(circle at 50% 0%, rgba(200, 169, 126, 0.15), transparent 60%);
+}
+
+.hero-glow-bevel {
+  background: radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.12), rgba(16, 185, 129, 0.05) 40%, transparent 70%);
+}
+
+.hero-glow-industrial {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 85, 0, 0.12), transparent 60%);
 }
 
 .hero-glow-blue {
-  background: radial-gradient(circle at 50% -20%, rgba(37, 99, 235, 0.08) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.06), transparent 50%);
+}
+
+.hero-glow-teal {
+  background: radial-gradient(circle at 50% 0%, rgba(13, 148, 136, 0.06), transparent 50%);
 }
 
 .hero-glow-rose {
-  background: radial-gradient(circle at 50% -20%, rgba(225, 29, 72, 0.08) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 0%, rgba(225, 29, 72, 0.06), transparent 50%);
 }
 
 .hero-glow-amber {
-  background: radial-gradient(circle at 50% -20%, rgba(217, 119, 6, 0.08) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.06), transparent 50%);
 }
 
-/* Clean Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #F8FAFC;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+.hero-glow-indigo {
+  background: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.06), transparent 50%);
 }

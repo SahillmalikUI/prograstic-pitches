@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CleanHero } from "@/components/common/CleanHero";
-import { MissingLoopSection } from "@/components/common/MissingLoopSection";
-import { CapabilitiesSection } from "@/components/common/CapabilitiesSection";
+import { LuxuryAestheticHero } from "@/components/aesthetics/LuxuryAestheticHero";
+import { LuxuryMissingLoopSection } from "@/components/aesthetics/LuxuryMissingLoopSection";
+import { LuxuryCapabilitiesSection } from "@/components/aesthetics/LuxuryCapabilitiesSection";
 import { StudioVsOthers } from "@/components/common/StudioVsOthers";
 import { ProcessTimeline } from "@/components/common/ProcessTimeline";
 import { DiscoveryModal } from "@/components/common/DiscoveryModal";
@@ -17,16 +17,16 @@ export default function AestheticsPage() {
   const vertical = VERTICALS.aesthetics;
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-slate-900 selection:text-white">
+    <div className="min-h-screen bg-[#FAF7F2] text-[#1C1917] flex flex-col selection:bg-[#1C1917] selection:text-[#FAF7F2]">
       <Navbar vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
       <main className="flex-1 space-y-20">
-        <CleanHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)}>
+        <LuxuryAestheticHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)}>
           <FaceScrollAestheticDemo />
-        </CleanHero>
+        </LuxuryAestheticHero>
 
-        <MissingLoopSection vertical={vertical} />
-        <CapabilitiesSection vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
+        <LuxuryMissingLoopSection vertical={vertical} />
+        <LuxuryCapabilitiesSection vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
         <StudioVsOthers />
         <ProcessTimeline onOpenScopeModal={() => setModalOpen(true)} />
       </main>
