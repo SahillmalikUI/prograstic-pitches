@@ -3,13 +3,14 @@
 import React, { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { IndustrialPlantHero } from "@/components/manufacturing/IndustrialPlantHero";
-import { IndustrialMissingLoopSection } from "@/components/manufacturing/IndustrialMissingLoopSection";
-import { IndustrialCapabilitiesSection } from "@/components/manufacturing/IndustrialCapabilitiesSection";
-import { StudioVsOthers } from "@/components/common/StudioVsOthers";
+import { CfiManufacturingHero } from "@/components/manufacturing/CfiManufacturingHero";
+import { CfiPlantStorySection } from "@/components/manufacturing/CfiPlantStorySection";
+import { CfiPlantCapabilitiesSection } from "@/components/manufacturing/CfiPlantCapabilitiesSection";
+import { CfiInteractiveSimulatorSection } from "@/components/manufacturing/CfiInteractiveSimulatorSection";
+import { CfiComparisonTable } from "@/components/manufacturing/CfiComparisonTable";
 import { ProcessTimeline } from "@/components/common/ProcessTimeline";
+import { CfiCtaSection } from "@/components/manufacturing/CfiCtaSection";
 import { DiscoveryModal } from "@/components/common/DiscoveryModal";
-import { ManufacturingWorkflowDemo } from "@/components/widgets/ManufacturingWorkflowDemo";
 import { VERTICALS } from "@/data/verticals";
 
 export default function ManufacturingPage() {
@@ -17,18 +18,30 @@ export default function ManufacturingPage() {
   const vertical = VERTICALS.manufacturing;
 
   return (
-    <div className="min-h-screen bg-[#0F1117] text-white flex flex-col selection:bg-[#FF5500] selection:text-white">
+    <div className="min-h-screen bg-[#0D0F14] text-white flex flex-col selection:bg-amber-500 selection:text-slate-950">
       <Navbar vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
-      <main className="flex-1 space-y-20">
-        <IndustrialPlantHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)}>
-          <ManufacturingWorkflowDemo />
-        </IndustrialPlantHero>
+      <main className="flex-1 space-y-16 sm:space-y-28">
+        {/* 1. Giant Brutalist Hero Section inspired by Corporate Fashion Industries */}
+        <CfiManufacturingHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
-        <IndustrialMissingLoopSection vertical={vertical} />
-        <IndustrialCapabilitiesSection vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
-        <StudioVsOthers />
+        {/* 2. Shopfloor Bottleneck & Industrial Photography Story */}
+        <CfiPlantStorySection />
+
+        {/* 3. Plant Capabilities Grid (4 Project Cards) */}
+        <CfiPlantCapabilitiesSection />
+
+        {/* 4. Live Interactive Shopfloor Simulator */}
+        <CfiInteractiveSimulatorSection />
+
+        {/* 5. Plant Comparison Matrix: Prograstic vs Legacy MES */}
+        <CfiComparisonTable />
+
+        {/* 6. 14-Day Rapid Deployment Roadmap */}
         <ProcessTimeline onOpenScopeModal={() => setModalOpen(true)} />
+
+        {/* 7. Bottom Plant Discovery CTA Banner */}
+        <CfiCtaSection onOpenScopeModal={() => setModalOpen(true)} />
       </main>
 
       <Footer vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
