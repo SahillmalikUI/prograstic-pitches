@@ -3,13 +3,14 @@
 import React, { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CleanHero } from "@/components/common/CleanHero";
-import { MissingLoopSection } from "@/components/common/MissingLoopSection";
-import { CapabilitiesSection } from "@/components/common/CapabilitiesSection";
-import { StudioVsOthers } from "@/components/common/StudioVsOthers";
+import { FertilityHeroSection } from "@/components/fertility/FertilityHeroSection";
+import { FertilityStorySection } from "@/components/fertility/FertilityStorySection";
+import { FertilityCapabilitiesSection } from "@/components/fertility/FertilityCapabilitiesSection";
+import { FertilityInteractiveDemoSection } from "@/components/fertility/FertilityInteractiveDemoSection";
+import { FertilityComparisonTable } from "@/components/fertility/FertilityComparisonTable";
 import { ProcessTimeline } from "@/components/common/ProcessTimeline";
+import { FertilityCtaSection } from "@/components/fertility/FertilityCtaSection";
 import { DiscoveryModal } from "@/components/common/DiscoveryModal";
-import { FertilityWorkflowDemo } from "@/components/widgets/FertilityWorkflowDemo";
 import { VERTICALS } from "@/data/verticals";
 
 export default function FertilityPage() {
@@ -17,18 +18,30 @@ export default function FertilityPage() {
   const vertical = VERTICALS.fertility;
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-slate-900 selection:text-white">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-slate-950 selection:text-white">
       <Navbar vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
-      <main className="flex-1 space-y-16">
-        <CleanHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)}>
-          <FertilityWorkflowDemo />
-        </CleanHero>
+      <main className="flex-1 space-y-16 sm:space-y-28">
+        {/* 1. Giant Brutalist Hero Section with Daylight IVF Embryology Lab */}
+        <FertilityHeroSection vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
-        <MissingLoopSection vertical={vertical} />
-        <CapabilitiesSection vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
-        <StudioVsOthers />
+        {/* 2. Embryology Bottleneck & Real Cryo Lab Photography Story */}
+        <FertilityStorySection />
+
+        {/* 3. IVF Clinical Capabilities Grid (4 Modules) */}
+        <FertilityCapabilitiesSection />
+
+        {/* 4. Live Interactive Embryo & Cryo Tank Simulator */}
+        <FertilityInteractiveDemoSection />
+
+        {/* 5. Clinical Comparison Matrix: Prograstic vs Legacy HMS */}
+        <FertilityComparisonTable />
+
+        {/* 6. 14-Day Rapid Deployment Roadmap */}
         <ProcessTimeline onOpenScopeModal={() => setModalOpen(true)} />
+
+        {/* 7. Bottom IVF Discovery CTA Banner */}
+        <FertilityCtaSection onOpenScopeModal={() => setModalOpen(true)} />
       </main>
 
       <Footer vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
