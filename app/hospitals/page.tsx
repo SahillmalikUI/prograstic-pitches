@@ -4,9 +4,8 @@ import React, { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { BevelHospitalHero } from "@/components/hospitals/BevelHospitalHero";
-import { BevelIntelligenceCard } from "@/components/hospitals/BevelIntelligenceCard";
 import { BevelPillarsSection } from "@/components/hospitals/BevelPillarsSection";
-import { BevelMissingLoopSection } from "@/components/hospitals/BevelMissingLoopSection";
+import { BevelIntelligenceCard } from "@/components/hospitals/BevelIntelligenceCard";
 import { BevelInteractiveDemoSection } from "@/components/hospitals/BevelInteractiveDemoSection";
 import { BevelComparisonTable } from "@/components/hospitals/BevelComparisonTable";
 import { ProcessTimeline } from "@/components/common/ProcessTimeline";
@@ -19,26 +18,23 @@ export default function HospitalsPage() {
   const vertical = VERTICALS.hospitals;
 
   return (
-    <div className="min-h-screen bg-[#07080A] text-white flex flex-col selection:bg-[#00F0FF] selection:text-black">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-slate-900 selection:text-white">
       <Navbar vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
       <main className="flex-1 space-y-16 sm:space-y-24">
-        {/* Bevel-Style Hero with Dual-Device Showcase */}
+        {/* Bevel-Style Light Sky Hero with iPhone & Watch */}
         <BevelHospitalHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
-        {/* Bevel-Style AI Clinical Intelligence Card */}
-        <BevelIntelligenceCard />
-
-        {/* The 3 Core Pillars (Flow, Care, Speed) */}
+        {/* The 3 Core Pillars (Flow, Wards, Care - Bevel Screenshot 3) */}
         <BevelPillarsSection />
 
-        {/* Missing Loop Bottleneck Analysis */}
-        <BevelMissingLoopSection vertical={vertical} />
+        {/* Bevel Intelligence Section (Screenshots 4 & 5) */}
+        <BevelIntelligenceCard />
 
         {/* Live Interactive Hospital Workflow Simulator */}
         <BevelInteractiveDemoSection />
 
-        {/* Bevel Comparison Table: Prograstic vs Legacy HMS */}
+        {/* Comparison Table: Prograstic vs Legacy HMS */}
         <BevelComparisonTable />
 
         {/* 14-Day Sprint Timeline */}

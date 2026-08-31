@@ -13,9 +13,9 @@ interface NavbarProps {
 export function Navbar({ vertical, onOpenScopeModal }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Check vertical theme styling
+  // Theme check
   const isAesthetics = vertical?.slug === "aesthetics";
-  const isDarkVertical = vertical?.slug === "hospitals" || vertical?.slug === "manufacturing" || vertical?.slug === "neurology";
+  const isDarkVertical = vertical?.slug === "manufacturing" || vertical?.slug === "neurology";
 
   return (
     <header className="sticky top-4 z-50 px-4 sm:px-6 max-w-7xl mx-auto w-full transition-all">
@@ -36,7 +36,7 @@ export function Navbar({ vertical, onOpenScopeModal }: NavbarProps) {
             rel="noopener noreferrer"
             className="flex items-center gap-2 font-black text-sm tracking-tight transition-opacity hover:opacity-80"
           >
-            <span className="w-2.5 h-2.5 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-slate-900 shadow-[0_0_8px_rgba(0,0,0,0.3)]" />
             <span className="font-display uppercase tracking-widest text-xs">PROGRASTIC</span>
           </a>
 
@@ -56,64 +56,39 @@ export function Navbar({ vertical, onOpenScopeModal }: NavbarProps) {
           )}
         </div>
 
-        {/* Center: Desktop Navigation Links */}
+        {/* Center: Navigation */}
         <nav className="hidden md:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider">
           <a
             href="#missing-loop"
-            className={`transition-colors ${
-              isDarkVertical
-                ? "text-slate-300 hover:text-white"
-                : isAesthetics
-                ? "text-[#57534E] hover:text-[#1C1917]"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
+            className="text-slate-600 hover:text-slate-900 transition-colors"
           >
             The Missing Loop
           </a>
           <a
             href="#capabilities"
-            className={`transition-colors ${
-              isDarkVertical
-                ? "text-slate-300 hover:text-white"
-                : isAesthetics
-                ? "text-[#57534E] hover:text-[#1C1917]"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
+            className="text-slate-600 hover:text-slate-900 transition-colors"
           >
             Capabilities
           </a>
           <Link
             href="/"
-            className={`transition-colors flex items-center gap-1 ${
-              isDarkVertical
-                ? "text-slate-300 hover:text-white"
-                : isAesthetics
-                ? "text-[#57534E] hover:text-[#1C1917]"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
+            className="text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1"
           >
             <Layers className="w-3.5 h-3.5" />
             <span>All Verticals</span>
           </Link>
         </nav>
 
-        {/* Right: CTA & Mobile Hamburger */}
+        {/* Right: CTA */}
         <div className="flex items-center gap-2.5">
           <button
             onClick={onOpenScopeModal}
-            className={`px-5 py-2 rounded-full font-bold text-xs uppercase tracking-wider transition-all hover:scale-105 shadow-md flex items-center gap-1.5 ${
-              isAesthetics
-                ? "bg-[#1C1917] hover:bg-[#2E2A27] text-[#FAF7F2]"
-                : isDarkVertical
-                ? "bg-[#00F0FF] hover:bg-[#38BDF8] text-slate-950 font-black"
-                : "bg-slate-900 hover:bg-slate-800 text-white"
-            }`}
+            className="px-5 py-2 rounded-full font-bold text-xs uppercase tracking-wider transition-all hover:scale-105 shadow-md flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white"
           >
             <span>Talk to Builders</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
 
-          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-full hover:bg-slate-500/10 transition-colors"
@@ -124,29 +99,20 @@ export function Navbar({ vertical, onOpenScopeModal }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div
-          className={`md:hidden mt-2 p-5 rounded-3xl border shadow-2xl space-y-4 animate-in fade-in slide-in-from-top-2 ${
-            isAesthetics
-              ? "bg-[#FAF7F2] border-[#EAE3D9] text-[#1C1917]"
-              : isDarkVertical
-              ? "bg-[#0B0F19] border-slate-800 text-white"
-              : "bg-white border-slate-200 text-slate-900"
-          }`}
-        >
+        <div className="md:hidden mt-2 p-5 rounded-3xl border border-slate-200 bg-white shadow-2xl space-y-4 animate-in fade-in slide-in-from-top-2 text-slate-900">
           <div className="flex flex-col space-y-3 font-semibold text-sm">
             <a
               href="#missing-loop"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2 border-b border-slate-200/50"
+              className="py-2 border-b border-slate-100"
             >
               The Missing Loop
             </a>
             <a
               href="#capabilities"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2 border-b border-slate-200/50"
+              className="py-2 border-b border-slate-100"
             >
               Capabilities
             </a>

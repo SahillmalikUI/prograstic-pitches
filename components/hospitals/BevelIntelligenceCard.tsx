@@ -1,84 +1,98 @@
 "use client";
 
 import React from "react";
-import { Sparkles, Bot, ArrowRight, ShieldCheck, CheckCircle2, Zap } from "lucide-react";
+import { Sparkles, Bot, CheckCircle2, ArrowRight, ShieldCheck, Check } from "lucide-react";
 
 export function BevelIntelligenceCard() {
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="relative rounded-[36px] sm:rounded-[44px] bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/15 p-8 sm:p-14 backdrop-blur-2xl shadow-[0_25px_80px_rgba(0,0,0,0.8)] overflow-hidden">
-        {/* Glow backdrop */}
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#00F0FF]/15 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
-          {/* Left Column: AI Clinical Intelligence Pitch */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-bold">
-              <Sparkles className="w-3.5 h-3.5 text-[#00F0FF]" />
-              <span>CLINICAL INTELLIGENCE COPILOT</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-5xl font-black text-white font-display tracking-tight leading-tight">
-              Hospital Insights That Act Before Bottlenecks Happen.
-            </h2>
-
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
-              Just like modern consumer health apps analyze recovery, Prograstic Clinical Intelligence monitors real-time ward velocity, OPD congestion, and surgical turnaround times to recommend proactive adjustments.
-            </p>
-
-            <div className="space-y-3 font-mono text-xs text-slate-300">
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#00F0FF]" />
-                <span>Automated bed transfer recommendations upon discharge sign-off</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#10B981]" />
-                <span>Zero-click WhatsApp pharmacy ready alerts for outpatient queues</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-purple-400" />
-                <span>Continuous HIPAA & ABDM compliance audit verification</span>
-              </div>
-            </div>
+    <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#101216] text-white">
+      <div className="max-w-7xl mx-auto space-y-16">
+        {/* Section Header - Exact Bevel Screenshot 4 */}
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-xs font-mono font-bold text-cyan-300">
+            <Sparkles className="w-3.5 h-3.5 text-[#00F0FF]" />
+            <span>AI CLINICAL OS</span>
           </div>
+          <h2 className="text-4xl sm:text-6xl font-extrabold text-white font-display tracking-tight leading-tight">
+            Go deeper with Clinical Intelligence
+          </h2>
+          <p className="text-base sm:text-xl text-slate-400 font-sans leading-relaxed">
+            Get personalized guidance and actionable advice from your own 24/7 hospital operating engine.
+          </p>
+        </div>
 
-          {/* Right Column: Interactive Copilot Telemetry Card */}
-          <div className="lg:col-span-6">
-            <div className="rounded-[28px] bg-black/80 border border-white/15 p-6 sm:p-8 space-y-5 shadow-2xl">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-[#00F0FF]" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-white">Prograstic Clinical AI</div>
-                    <div className="text-[11px] text-slate-400 font-mono">Ward & Triage Coordinator • Live</div>
-                  </div>
+        {/* Large White Rounded Card Inside Dark Background - Matching Bevel Screenshot 4 & 5 */}
+        <div className="rounded-[40px] sm:rounded-[48px] bg-white text-slate-900 p-8 sm:p-14 shadow-2xl overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Left Column: Get Answers From Your Data */}
+            <div className="lg:col-span-6 space-y-6">
+              <h3 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-display tracking-tight leading-tight">
+                Get answers from your data
+              </h3>
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-sans">
+                Ask questions about hospital flow and get answers grounded in your own real-time patient metrics.
+              </p>
+
+              <div className="space-y-3 font-mono text-xs sm:text-sm text-slate-700">
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>"How many beds are discharging before 2:00 PM today?"</span>
                 </div>
-                <span className="text-[10px] font-mono text-cyan-300 bg-cyan-950/60 border border-cyan-500/30 px-2.5 py-1 rounded-full">
-                  Real-Time
-                </span>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>"Which OPD specialty currently has the highest waiting time?"</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>"Auto-dispatch cleaning staff to Sanitizing beds"</span>
+                </div>
               </div>
+            </div>
 
-              {/* Simulated AI Insight Message */}
-              <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2 text-xs sm:text-sm">
-                <p className="text-slate-200 leading-relaxed font-sans">
-                  "⚡ <strong className="text-white">Ward Alert:</strong> Dr. Sharma signed discharge summary for Bed 204 (Orthopaedics). Cleaning protocol initiated. Automatically assigning to emergency trauma patient waiting at Lobby Token #18."
-                </p>
-                <div className="text-[11px] font-mono text-[#00F0FF]">
-                  Action dispatched: Bed status updated to 'Sanitizing' across all reception screens.
+            {/* Right Column: Bevel-Style Thought Process & Proactive Check-in iPhone Card */}
+            <div className="lg:col-span-6 flex justify-center">
+              <div className="w-full max-w-md rounded-[32px] bg-slate-50 border-2 border-slate-200/80 p-6 shadow-xl space-y-4 text-xs font-sans">
+                {/* Simulated AI Thought Accordion Header */}
+                <div className="p-3 rounded-2xl bg-white border border-slate-200 space-y-2">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
+                    <span>Thought for 12 seconds</span>
+                    <span className="text-emerald-600 font-bold">Done ✓</span>
+                  </div>
+                  <div className="space-y-1 text-[11px] text-slate-500 font-mono">
+                    <div className="flex items-center gap-1.5 text-slate-700">
+                      <Check className="w-3.5 h-3.5 text-emerald-500" />
+                      <span>Reviewing live ward telemetry signals</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-slate-700">
+                      <Check className="w-3.5 h-3.5 text-emerald-500" />
+                      <span>Analyzing OPD token queue velocity</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              {/* Action Buttons */}
-              <div className="grid grid-cols-2 gap-3 text-xs font-mono">
-                <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-slate-300 hover:text-white hover:border-white/20 transition-colors">
-                  <div className="text-slate-500 uppercase text-[10px]">Triage Velocity</div>
-                  <div className="text-white font-bold mt-0.5">8.4 mins avg</div>
+                {/* AI Insight Result */}
+                <div className="p-4 rounded-2xl bg-white border border-slate-200 text-slate-800 space-y-2 leading-relaxed">
+                  <p className="font-semibold text-slate-900">
+                    "Dr. Verma completed 28 OPD consultations today with 0 pending lab delays. Bed 204 in Ward B has completed sanitization and is ready for intake."
+                  </p>
                 </div>
-                <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-slate-300 hover:text-white hover:border-white/20 transition-colors">
-                  <div className="text-slate-500 uppercase text-[10px]">ICU Turnaround</div>
-                  <div className="text-emerald-400 font-bold mt-0.5">99.2% Accurate</div>
+
+                {/* Simulated Blue Chat Bubble (Like Bevel Screenshot 5) */}
+                <div className="flex justify-end">
+                  <div className="bg-blue-600 text-white font-medium px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-xs shadow-md">
+                    "Remind nursing station to verify vitals for Room 302 at 4:00 PM."
+                  </div>
+                </div>
+
+                {/* Proactive Check-in Pill */}
+                <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <div className="font-bold text-xs">Vital Check-in Scheduled</div>
+                    <div className="text-[11px] font-mono text-emerald-700">Auto-reminder sent to on-duty nurse</div>
+                  </div>
+                  <span className="text-xs font-mono font-bold text-emerald-800 bg-white px-2 py-1 rounded-lg border border-emerald-200">
+                    4:00 PM
+                  </span>
                 </div>
               </div>
             </div>
