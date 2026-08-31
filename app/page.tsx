@@ -56,9 +56,9 @@ export default function HubPage() {
       <Navbar onOpenScopeModal={() => handleOpenModal("hospitals")} />
 
       <main className="flex-1 space-y-16">
-        {/* Hub Master Hero */}
-        <section className="relative pt-12 pb-16 px-4 sm:px-6 overflow-hidden bg-white hero-glow-indigo">
-          <div className="absolute inset-0 bg-grid-prograstic opacity-70 pointer-events-none" />
+        {/* Hub Master Hero - Zero Box Grid */}
+        <section className="relative pt-12 pb-16 px-4 sm:px-6 overflow-hidden bg-white">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-r from-indigo-100/60 via-blue-100/50 to-teal-50/60 rounded-full blur-[100px] pointer-events-none" />
 
           <div className="max-w-6xl mx-auto space-y-10 relative z-10">
             <div className="text-center space-y-4 max-w-3xl mx-auto">

@@ -13,8 +13,7 @@ interface FertilityHeroSectionProps {
 export function FertilityHeroSection({ vertical, onOpenScopeModal }: FertilityHeroSectionProps) {
   return (
     <section className="relative pt-10 pb-20 sm:pb-32 px-4 sm:px-6 lg:px-8 bg-white text-slate-900 overflow-hidden">
-      {/* Soft Rose Blueprint Aura Background */}
-      <div className="absolute inset-0 bg-grid-prograstic opacity-60 pointer-events-none" />
+      {/* Soft Rose Radial Aura Background (Zero Box Grid) */}
       <div className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-rose-100/50 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[500px] h-[300px] bg-pink-50/70 rounded-full blur-[100px] pointer-events-none" />
 

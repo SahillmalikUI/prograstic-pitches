@@ -13,13 +13,12 @@ interface CfiManufacturingHeroProps {
 export function CfiManufacturingHero({ vertical, onOpenScopeModal }: CfiManufacturingHeroProps) {
   return (
     <section className="relative pt-10 pb-20 sm:pb-32 px-4 sm:px-6 lg:px-8 bg-white text-slate-900 overflow-hidden">
-      {/* Soft Blueprint Grid Lines & Subtle Ambient Glow */}
-      <div className="absolute inset-0 bg-grid-prograstic opacity-70 pointer-events-none" />
-      <div className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-orange-100/60 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[300px] bg-blue-50/80 rounded-full blur-[100px] pointer-events-none" />
+      {/* Soft Ambient Radial Lighting (Zero Box Grid) */}
+      <div className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-orange-100/50 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[300px] bg-blue-50/70 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 relative z-10">
-        {/* Top Scramble & Telemetry Badges - Clean Light Version */}
+        {/* Top Scramble & Telemetry Badges */}
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-5 text-xs font-mono">
           <div className="flex items-center gap-3">
             <span className="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse" />
@@ -42,7 +41,7 @@ export function CfiManufacturingHero({ vertical, onOpenScopeModal }: CfiManufact
           </div>
         </div>
 
-        {/* Giant Brutalist Hero Heading - 100% Light High-Contrast */}
+        {/* Giant Brutalist Hero Heading */}
         <div className="space-y-6">
           <div className="text-sm sm:text-base font-mono text-orange-600 font-bold uppercase tracking-widest flex items-center gap-2">
             <Factory className="w-4 h-4 text-orange-500" />
