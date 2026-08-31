@@ -5,46 +5,46 @@ import { Sparkles, Bot, CheckCircle2, ArrowRight, ShieldCheck, Check } from "luc
 
 export function BevelIntelligenceCard() {
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#101216] text-white">
+    <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-slate-50 text-slate-900">
       <div className="max-w-7xl mx-auto space-y-16">
-        {/* Section Header - Exact Bevel Screenshot 4 */}
+        {/* Section Header - Clean Light */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-xs font-mono font-bold text-cyan-300">
-            <Sparkles className="w-3.5 h-3.5 text-[#00F0FF]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-xs font-mono font-bold text-blue-800">
+            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
             <span>AI CLINICAL OS</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-extrabold text-white font-display tracking-tight leading-tight">
+          <h2 className="text-4xl sm:text-6xl font-extrabold text-slate-950 font-display tracking-tight leading-tight">
             Go deeper with Clinical Intelligence
           </h2>
-          <p className="text-base sm:text-xl text-slate-400 font-sans leading-relaxed">
+          <p className="text-base sm:text-xl text-slate-600 font-sans leading-relaxed">
             Get personalized guidance and actionable advice from your own 24/7 hospital operating engine.
           </p>
         </div>
 
-        {/* Large White Rounded Card Inside Dark Background - Matching Bevel Screenshot 4 & 5 */}
-        <div className="rounded-[40px] sm:rounded-[48px] bg-white text-slate-900 p-8 sm:p-14 shadow-2xl overflow-hidden">
+        {/* Large White Rounded Card Inside Light Background */}
+        <div className="rounded-[40px] sm:rounded-[48px] bg-white border border-slate-200 text-slate-900 p-8 sm:p-14 shadow-2xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left Column: Get Answers From Your Data */}
             <div className="lg:col-span-6 space-y-6">
               <h3 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-display tracking-tight leading-tight">
-                Get answers from your data
+                Get answers from your hospital data
               </h3>
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-sans">
-                Ask questions about hospital flow and get answers grounded in your own real-time patient metrics.
+              <p className="text-base sm:text-xl text-slate-600 leading-relaxed font-sans">
+                Ask questions about patient flow and get answers grounded in your own real-time hospital metrics.
               </p>
 
-              <div className="space-y-3 font-mono text-xs sm:text-sm text-slate-700">
+              <div className="space-y-3 font-sans text-sm sm:text-base text-slate-700">
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                   <span>"How many beds are discharging before 2:00 PM today?"</span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                   <span>"Which OPD specialty currently has the highest waiting time?"</span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>"Auto-dispatch cleaning staff to Sanitizing beds"</span>
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                  <span>"Auto-dispatch housekeeping staff to Sanitizing beds"</span>
                 </div>
               </div>
             </div>
@@ -71,15 +71,15 @@ export function BevelIntelligenceCard() {
                 </div>
 
                 {/* AI Insight Result */}
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 text-slate-800 space-y-2 leading-relaxed">
+                <div className="p-4 rounded-2xl bg-white border border-slate-200 text-slate-800 space-y-2 leading-relaxed text-sm">
                   <p className="font-semibold text-slate-900">
                     "Dr. Verma completed 28 OPD consultations today with 0 pending lab delays. Bed 204 in Ward B has completed sanitization and is ready for intake."
                   </p>
                 </div>
 
-                {/* Simulated Blue Chat Bubble (Like Bevel Screenshot 5) */}
+                {/* Simulated Blue Chat Bubble */}
                 <div className="flex justify-end">
-                  <div className="bg-blue-600 text-white font-medium px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-xs shadow-md">
+                  <div className="bg-blue-600 text-white font-medium px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-xs shadow-md text-xs sm:text-sm">
                     "Remind nursing station to verify vitals for Room 302 at 4:00 PM."
                   </div>
                 </div>
@@ -87,7 +87,7 @@ export function BevelIntelligenceCard() {
                 {/* Proactive Check-in Pill */}
                 <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <div className="font-bold text-xs">Vital Check-in Scheduled</div>
+                    <div className="font-bold text-xs sm:text-sm">Vital Check-in Scheduled</div>
                     <div className="text-[11px] font-mono text-emerald-700">Auto-reminder sent to on-duty nurse</div>
                   </div>
                   <span className="text-xs font-mono font-bold text-emerald-800 bg-white px-2 py-1 rounded-lg border border-emerald-200">

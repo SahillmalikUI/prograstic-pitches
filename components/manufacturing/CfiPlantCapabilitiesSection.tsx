@@ -9,7 +9,7 @@ export function CfiPlantCapabilitiesSection() {
       num: "01",
       title: "Machine OEE & Downtime Telemetry",
       tag: "REAL-TIME PLC ENGINE",
-      stat: "94.8% OEE Target",
+      stat: "98.7% OEE Target",
       desc: "Connect directly to machine PLCs, CNCs, and electrical transducers. Track live speed, micro-stoppages, and automated scrap tallying without manual operator clipboards.",
       points: [
         "Sub-second cycle time recording directly from machine sensors",
@@ -56,61 +56,61 @@ export function CfiPlantCapabilitiesSection() {
   ];
 
   return (
-    <section id="capabilities" className="py-24 sm:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#0D0F14] text-white">
+    <section id="capabilities" className="py-24 sm:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white text-slate-900">
       <div className="space-y-16">
-        {/* Header - Inspired by CFI "Projecten: waar details het verschil maken" */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+        {/* Header - Clean Light Theme */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-8">
           <div className="space-y-3 max-w-2xl">
-            <div className="flex items-center gap-2 text-xs font-mono text-amber-500 font-bold uppercase tracking-widest">
+            <div className="flex items-center gap-2 text-xs font-mono text-orange-600 font-bold uppercase tracking-widest">
               <span>02.</span>
               <span>PLANT CAPABILITIES</span>
             </div>
-            <h2 className="text-4xl sm:text-6xl font-black font-display tracking-tight text-white uppercase leading-[0.95]">
+            <h2 className="text-4xl sm:text-6xl font-extrabold font-display tracking-tight text-slate-950 uppercase leading-[0.95]">
               Details That Drive Factory Yield.
             </h2>
           </div>
 
-          <p className="text-sm sm:text-base text-slate-400 font-sans max-w-md">
+          <p className="text-base sm:text-lg text-slate-600 font-sans max-w-md">
             Modular software units deployed on your existing factory hardware in 14-day agile development sprints.
           </p>
         </div>
 
-        {/* 4 Large Brutalist Project Cards Grid */}
+        {/* 4 Large Clean Light Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {capabilities.map((cap, idx) => (
             <div
               key={idx}
-              className="p-8 sm:p-12 rounded-[36px] bg-[#141820] border border-white/10 hover:border-amber-500/50 transition-all duration-300 flex flex-col justify-between space-y-8 group shadow-2xl"
+              className="p-8 sm:p-12 rounded-[36px] bg-[#F8FAFC] border border-slate-200/90 hover:border-orange-500 transition-all duration-300 flex flex-col justify-between space-y-8 group shadow-lg hover:shadow-xl"
             >
               <div className="space-y-6">
                 {/* Top Number & Tag */}
                 <div className="flex items-center justify-between">
-                  <span className="text-4xl font-black font-display text-slate-700 group-hover:text-amber-500 transition-colors">
+                  <span className="text-4xl font-black font-display text-slate-300 group-hover:text-orange-600 transition-colors">
                     {cap.num}
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono font-bold text-amber-400">
+                  <span className="px-3.5 py-1 rounded-full bg-white border border-slate-200 text-xs font-mono font-bold text-orange-600 shadow-sm">
                     {cap.tag}
                   </span>
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display tracking-tight leading-snug">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-display tracking-tight leading-snug">
                     {cap.title}
                   </h3>
-                  <div className="text-xs font-mono font-bold text-emerald-400">
+                  <div className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md inline-block border border-emerald-200">
                     BENCHMARK: {cap.stat}
                   </div>
-                  <p className="text-sm sm:text-base text-slate-400 font-sans leading-relaxed">
+                  <p className="text-base sm:text-lg text-slate-600 font-sans leading-relaxed">
                     {cap.desc}
                   </p>
                 </div>
               </div>
 
               {/* Checklist Points */}
-              <div className="space-y-2.5 pt-4 border-t border-white/10 text-xs sm:text-sm font-sans text-slate-300">
+              <div className="space-y-2.5 pt-5 border-t border-slate-200 text-sm font-sans text-slate-700">
                 {cap.points.map((pt, pIdx) => (
                   <div key={pIdx} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-orange-600 shrink-0 mt-0.5" />
                     <span>{pt}</span>
                   </div>
                 ))}

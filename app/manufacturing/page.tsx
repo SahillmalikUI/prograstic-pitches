@@ -18,14 +18,14 @@ export default function ManufacturingPage() {
   const vertical = VERTICALS.manufacturing;
 
   return (
-    <div className="min-h-screen bg-[#0D0F14] text-white flex flex-col selection:bg-amber-500 selection:text-slate-950">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-slate-950 selection:text-white">
       <Navbar vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
       <main className="flex-1 space-y-16 sm:space-y-28">
-        {/* 1. Giant Brutalist Hero Section inspired by Corporate Fashion Industries */}
+        {/* 1. Giant Brutalist Hero Section with Daylight Smart Factory Floor */}
         <CfiManufacturingHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
-        {/* 2. Shopfloor Bottleneck & Industrial Photography Story */}
+        {/* 2. Shopfloor Bottleneck & Real Industrial Photography Story */}
         <CfiPlantStorySection />
 
         {/* 3. Plant Capabilities Grid (4 Project Cards) */}
