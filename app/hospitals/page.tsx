@@ -5,7 +5,9 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { BevelHospitalHero } from "@/components/hospitals/BevelHospitalHero";
 import { BevelPillarsSection } from "@/components/hospitals/BevelPillarsSection";
+import { BevelHealthRecordsSection } from "@/components/hospitals/BevelHealthRecordsSection";
 import { BevelIntelligenceCard } from "@/components/hospitals/BevelIntelligenceCard";
+import { BevelFeatureSwitcherSection } from "@/components/hospitals/BevelFeatureSwitcherSection";
 import { BevelInteractiveDemoSection } from "@/components/hospitals/BevelInteractiveDemoSection";
 import { BevelComparisonTable } from "@/components/hospitals/BevelComparisonTable";
 import { ProcessTimeline } from "@/components/common/ProcessTimeline";
@@ -18,29 +20,35 @@ export default function HospitalsPage() {
   const vertical = VERTICALS.hospitals;
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-slate-900 selection:text-white">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-slate-950 selection:text-white">
       <Navbar vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
-      <main className="flex-1 space-y-16 sm:space-y-24">
-        {/* Bevel-Style Light Sky Hero with iPhone & Watch */}
+      <main className="flex-1 space-y-16 sm:space-y-28">
+        {/* 1. Bevel-Style Light Sky Hero with iPhone, Smart Watch & Floating Badges (Screenshot 1) */}
         <BevelHospitalHero vertical={vertical} onOpenScopeModal={() => setModalOpen(true)} />
 
-        {/* The 3 Core Pillars (Flow, Wards, Care - Bevel Screenshot 3) */}
+        {/* 2. The 3 Core Pillars: Flow, Wards, Care (Screenshot 3) */}
         <BevelPillarsSection />
 
-        {/* Bevel Intelligence Section (Screenshots 4 & 5) */}
+        {/* 3. Connect Your Hospital Health Records (Screenshot 1 of newest batch) */}
+        <BevelHealthRecordsSection />
+
+        {/* 4. Go Deeper With Clinical Intelligence (Screenshots 4 & 5) */}
         <BevelIntelligenceCard />
 
-        {/* Live Interactive Hospital Workflow Simulator */}
+        {/* 5. And That’s Not All - Feature Selector Stack (Screenshot 2 of newest batch) */}
+        <BevelFeatureSwitcherSection />
+
+        {/* 6. Live Interactive Hospital OPD & EMR Simulator */}
         <BevelInteractiveDemoSection />
 
-        {/* Comparison Table: Prograstic vs Legacy HMS */}
+        {/* 7. Comparison Table: Prograstic vs Legacy HMS */}
         <BevelComparisonTable />
 
-        {/* 14-Day Sprint Timeline */}
+        {/* 8. 14-Day Delivery Sprint Timeline */}
         <ProcessTimeline onOpenScopeModal={() => setModalOpen(true)} />
 
-        {/* Bottom Scope CTA Banner */}
+        {/* 9. Bottom Scope Discovery CTA Banner */}
         <BevelCtaSection onOpenScopeModal={() => setModalOpen(true)} />
       </main>
 
