@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Smile, Activity, ArrowRight, ShieldCheck, Zap } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { RadialGauge } from "@/components/ui/RadialGauge";
 
 export function DentalStorySection() {
   const points = [
@@ -30,7 +31,7 @@ export function DentalStorySection() {
 
         {/* Dual Content Grid & Sticky Story */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 items-start">
-          {/* Left Column: Visual Showcase with 3D Tilt */}
+          {/* Left Column: Visual Showcase with 3D Tilt & Radial Gauges */}
           <div className="lg:col-span-7 space-y-6">
             <TiltCard className="rounded-[32px] overflow-hidden border border-slate-200 bg-[#F4FBFA] p-6 sm:p-8 shadow-xl space-y-5">
               <div className="flex items-center justify-between">
@@ -68,23 +69,19 @@ export function DentalStorySection() {
               </div>
             </TiltCard>
 
-            {/* Metric KPI Banner */}
+            {/* Metric KPI Banner with Radial Gauges */}
             <div className="grid grid-cols-3 gap-3 pt-1">
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-0.5 text-center sm:text-left shadow-sm">
-                <div className="text-2xl sm:text-3xl font-extrabold font-display text-teal-700">
-                  <AnimatedCounter value={30} suffix="s" />
-                </div>
-                <div className="text-xs font-mono font-bold text-slate-600">Odontogram</div>
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between items-center text-center shadow-sm space-y-2">
+                <RadialGauge value={30} size={64} strokeWidth={6} color="#0D9488" bgColor="#CCFBF1" label="" suffix="s" />
+                <div className="text-xs font-mono font-bold text-slate-700">Odontogram</div>
               </div>
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-0.5 text-center sm:text-left shadow-sm">
-                <div className="text-2xl sm:text-3xl font-extrabold font-display text-emerald-600">
-                  <AnimatedCounter value={100} suffix="%" />
-                </div>
-                <div className="text-xs font-mono font-bold text-slate-600">Lab Traceability</div>
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between items-center text-center shadow-sm space-y-2">
+                <RadialGauge value={100} size={64} strokeWidth={6} color="#059669" bgColor="#A7F3D0" label="" suffix="%" />
+                <div className="text-xs font-mono font-bold text-slate-700">Lab Traceability</div>
               </div>
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-0.5 text-center sm:text-left shadow-sm">
-                <div className="text-2xl sm:text-3xl font-extrabold font-display text-blue-600">0</div>
-                <div className="text-xs font-mono font-bold text-slate-600">Lost Slips</div>
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between items-center text-center shadow-sm space-y-2">
+                <RadialGauge value={100} size={64} strokeWidth={6} color="#2563EB" bgColor="#DBEAFE" label="" suffix="%" />
+                <div className="text-xs font-mono font-bold text-slate-700">Digital Notes</div>
               </div>
             </div>
           </div>

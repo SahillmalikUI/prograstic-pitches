@@ -4,6 +4,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Activity, ShieldCheck, Zap, Bed, Clock, ArrowRight, HeartPulse, Sparkles, CheckCircle2 } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { RadialGauge } from "@/components/ui/RadialGauge";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 
 export function BevelPillarsSection() {
@@ -12,6 +14,8 @@ export function BevelPillarsSection() {
       title: "Flow",
       tagline: "Live OPD Queue Velocity",
       scoreValue: 94,
+      gaugeColor: "#2563EB",
+      gaugeBg: "#DBEAFE",
       scoreSuffix: "%",
       scoreLabel: "Triage Clearance Rate",
       accent: "#2563EB",
@@ -26,6 +30,8 @@ export function BevelPillarsSection() {
       title: "Wards",
       tagline: "Bed & ICU Synchronizer",
       scoreValue: 91.6,
+      gaugeColor: "#0D9488",
+      gaugeBg: "#CCFBF1",
       scoreSuffix: "%",
       scoreLabel: "Active Ward Occupancy (11/12 Beds)",
       accent: "#0D9488",
@@ -40,6 +46,8 @@ export function BevelPillarsSection() {
       title: "Care",
       tagline: "30s Clinical Documentation",
       scoreValue: 30,
+      gaugeColor: "#E11D48",
+      gaugeBg: "#FFE4E6",
       scoreSuffix: "s",
       scoreLabel: "Prescription Handoff Speed",
       accent: "#E11D48",
@@ -54,7 +62,7 @@ export function BevelPillarsSection() {
 
   return (
     <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 bg-white text-slate-900">
-      {/* Header */}
+      {/* Header with Framer Motion Reveal */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +82,7 @@ export function BevelPillarsSection() {
         </p>
       </motion.div>
 
-      {/* The 3 Cards Grid with 3D Tilt Physics & Counter Animation */}
+      {/* The 3 Cards Grid with 3D Tilt, Cursor Spotlight & Live Radial Gauges */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {pillars.map((pillar, idx) => (
           <motion.div
@@ -85,8 +93,8 @@ export function BevelPillarsSection() {
             transition={{ duration: 0.6, delay: idx * 0.15 }}
           >
             <TiltCard className="p-8 sm:p-10 rounded-[36px] bg-[#F8FAFC] border border-slate-200/90 flex flex-col justify-between space-y-8 group shadow-lg hover:shadow-2xl h-full">
-              {/* Top Pillar Title & Live Status Indicator */}
               <div className="space-y-6">
+                {/* Top Pillar Title & Live Status Indicator */}
                 <div className="flex items-center justify-between">
                   <span className="text-3xl sm:text-4xl font-black font-display text-slate-950">
                     {pillar.title}
@@ -99,18 +107,31 @@ export function BevelPillarsSection() {
                   </span>
                 </div>
 
-                {/* Big Animated Score Display */}
-                <div className="space-y-1 pt-2">
-                  <div className="text-5xl sm:text-6xl font-black text-slate-950 font-display tracking-tight">
-                    <AnimatedCounter
-                      value={pillar.scoreValue}
-                      suffix={pillar.scoreSuffix}
-                      decimals={pillar.scoreSuffix === "%" && pillar.scoreValue % 1 !== 0 ? 1 : 0}
-                    />
+                {/* Animated Radial Gauge & Score Display */}
+                <div className="flex items-center justify-between pt-2">
+                  <div className="space-y-1">
+                    <div className="text-4xl sm:text-5xl font-black text-slate-950 font-display tracking-tight">
+                      <AnimatedCounter
+                        value={pillar.scoreValue}
+                        suffix={pillar.scoreSuffix}
+                        decimals={pillar.scoreSuffix === "%" && pillar.scoreValue % 1 !== 0 ? 1 : 0}
+                      />
+                    </div>
+                    <div className="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">
+                      {pillar.scoreLabel}
+                    </div>
                   </div>
-                  <div className="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">
-                    {pillar.scoreLabel}
-                  </div>
+
+                  {/* Animated Radial Progress Ring */}
+                  <RadialGauge
+                    value={pillar.scoreValue > 100 ? 100 : pillar.scoreValue}
+                    size={76}
+                    strokeWidth={7}
+                    color={pillar.gaugeColor}
+                    bgColor={pillar.gaugeBg}
+                    suffix={pillar.scoreSuffix}
+                    label=""
+                  />
                 </div>
 
                 <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Cpu, Activity, ArrowRight, ShieldCheck, Zap } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { RadialGauge } from "@/components/ui/RadialGauge";
 
 export function CfiPlantStorySection() {
   const points = [
@@ -28,9 +29,9 @@ export function CfiPlantStorySection() {
           </div>
         </div>
 
-        {/* Dual Industrial Image Grid & Sticky Story Content */}
+        {/* Dual Industrial Content Grid & Sticky Story */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 items-start">
-          {/* Left Column: Industrial Photography with 3D Tilt */}
+          {/* Left Column: Industrial Photography with 3D Tilt & Radial Gauges */}
           <div className="lg:col-span-7 space-y-6">
             <TiltCard className="rounded-[32px] overflow-hidden border border-slate-200 bg-slate-50 shadow-xl">
               <div className="relative w-full aspect-[16/10] min-h-[300px]">
@@ -55,23 +56,19 @@ export function CfiPlantStorySection() {
               </div>
             </TiltCard>
 
-            {/* 3 Clean Metric Badges */}
+            {/* 3 Clean Metric Badges with Visual Radial Progress Arc */}
             <div className="grid grid-cols-3 gap-3 pt-1">
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-0.5 text-center sm:text-left shadow-sm">
-                <div className="text-2xl sm:text-3xl font-extrabold font-display text-orange-600">
-                  <AnimatedCounter value={38} suffix="%" />
-                </div>
-                <div className="text-xs font-mono font-bold text-slate-600">Faster Cycles</div>
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between items-center text-center shadow-sm space-y-2">
+                <RadialGauge value={38} size={64} strokeWidth={6} color="#EA580C" bgColor="#FED7AA" label="" suffix="%" />
+                <div className="text-xs font-mono font-bold text-slate-700">Faster Cycles</div>
               </div>
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-0.5 text-center sm:text-left shadow-sm">
-                <div className="text-2xl sm:text-3xl font-extrabold font-display text-emerald-600">
-                  <AnimatedCounter value={99.9} suffix="%" decimals={1} />
-                </div>
-                <div className="text-xs font-mono font-bold text-slate-600">Lot Accuracy</div>
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between items-center text-center shadow-sm space-y-2">
+                <RadialGauge value={99.9} size={64} strokeWidth={6} color="#059669" bgColor="#A7F3D0" label="" suffix="%" />
+                <div className="text-xs font-mono font-bold text-slate-700">Lot Accuracy</div>
               </div>
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-0.5 text-center sm:text-left shadow-sm">
-                <div className="text-2xl sm:text-3xl font-extrabold font-display text-blue-600">0</div>
-                <div className="text-xs font-mono font-bold text-slate-600">Paper Slips</div>
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between items-center text-center shadow-sm space-y-2">
+                <RadialGauge value={100} size={64} strokeWidth={6} color="#2563EB" bgColor="#DBEAFE" label="" suffix="%" />
+                <div className="text-xs font-mono font-bold text-slate-700">Paperless</div>
               </div>
             </div>
           </div>
