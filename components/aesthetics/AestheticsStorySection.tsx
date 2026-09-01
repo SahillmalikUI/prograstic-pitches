@@ -31,40 +31,27 @@ export function AestheticsStorySection() {
 
         {/* Dual Content Grid & Sticky Story */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 items-start">
-          {/* Left Column: Visual Showcase with 3D Tilt & Radial Gauges */}
+          {/* Left Column: Visual Showcase with 3D Tilt & Luxury MedSpa Background Photography */}
           <div className="lg:col-span-7 space-y-6">
-            <TiltCard className="rounded-[32px] overflow-hidden border border-amber-200/80 bg-[#FFFDF7] p-6 sm:p-8 shadow-xl space-y-5">
-              <div className="flex items-center justify-between">
-                <span className="px-3 py-1 rounded-full bg-white border border-amber-200 text-xs font-mono font-bold text-amber-800 shadow-sm">
-                  LIVE INJECTION RADAR
-                </span>
-                <span className="text-xs font-mono text-emerald-700 font-bold bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
-                  SUITE 01: ACTIVE SESSION
-                </span>
-              </div>
-
-              <div className="space-y-1.5">
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-display">
-                  3D Anatomical Vector & Depth Charting
-                </h3>
-                <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
-                  Injectors tap any facial quadrant to record precise neurotoxin units and dermal filler volume across Forehead Frontalis, Glabella, and Cheeks with zero guesswork.
-                </p>
-              </div>
-
-              {/* Simulated Treatment Preview */}
-              <div className="p-3.5 rounded-2xl bg-white border border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-                <div className="space-y-0.5">
-                  <div className="text-slate-400">PATIENT:</div>
-                  <div className="font-bold text-slate-900">Elena Rostova (VIP #1042)</div>
-                </div>
-                <div className="space-y-0.5">
-                  <div className="text-slate-400">PROCEDURE:</div>
-                  <div className="font-bold text-amber-800">Mid-Face Juvederm Voluma</div>
-                </div>
-                <div className="space-y-0.5">
-                  <div className="text-slate-400">VIAL RFID:</div>
-                  <div className="font-bold text-emerald-600">LOT #AL-8924 (Verified ✓)</div>
+            <TiltCard className="rounded-[32px] overflow-hidden border border-amber-200/80 bg-slate-50 shadow-xl">
+              <div className="relative w-full aspect-[16/10] min-h-[300px]">
+                <Image
+                  src="/mockups/aesthetics_luxury_bg.jpg"
+                  alt="Luxury Aesthetic MedSpa Interior & Reception"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+                
+                {/* Overlay Stat */}
+                <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl bg-white/95 border border-slate-200 backdrop-blur-md flex items-center justify-between text-xs font-mono shadow-lg">
+                  <div className="flex items-center gap-2 text-slate-900 font-bold">
+                    <Activity className="w-4 h-4 text-amber-700" />
+                    <span>SUITE 01: VIP DERMAL PROTOCOL</span>
+                  </div>
+                  <span className="text-amber-800 font-bold bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                    0.1mm PRECISION
+                  </span>
                 </div>
               </div>
             </TiltCard>

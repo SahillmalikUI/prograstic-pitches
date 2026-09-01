@@ -25,13 +25,24 @@ export function LuxuryAestheticHero({ vertical, onOpenScopeModal }: LuxuryAesthe
 
   return (
     <section className="relative pt-10 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 bg-[#FAF8F5] text-slate-900 overflow-hidden">
+      {/* Luxury Botanical & Sunlight Caustic Background Image */}
+      <div className="absolute inset-0 pointer-events-none opacity-25 mix-blend-multiply">
+        <Image
+          src="/mockups/aesthetics_texture_bg.jpg"
+          alt="Luxury Aesthetic Spa Wall Texture"
+          fill
+          className="object-cover object-top"
+          priority
+        />
+      </div>
+
       {/* Warm Champagne Glow */}
       <motion.div
-        animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.75, 0.5] }}
+        animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.65, 0.4] }}
         transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
-        className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-amber-100/60 rounded-full blur-[100px] pointer-events-none"
+        className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-amber-100/70 rounded-full blur-[100px] pointer-events-none"
       />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[300px] bg-rose-50/60 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[300px] bg-rose-50/70 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 relative z-10">
         {/* Top Scramble & MedSpa Telemetry Badges */}
