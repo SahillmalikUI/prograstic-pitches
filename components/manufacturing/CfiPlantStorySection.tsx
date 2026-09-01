@@ -36,8 +36,8 @@ export function CfiPlantStorySection() {
             <TiltCard className="rounded-[32px] overflow-hidden border border-slate-200 bg-slate-50 shadow-xl">
               <div className="relative w-full aspect-[16/10] min-h-[300px]">
                 <Image
-                  src="/mockups/manufacturing_light_operator.jpg"
-                  alt="Industrial Engineer Operating CNC Tablet Terminal"
+                  src="/mockups/manufacturing_quality_lab.jpg"
+                  alt="Industrial QA Engineer Operating Laser CMM Measurement Terminal"
                   fill
                   className="object-cover"
                 />
@@ -47,10 +47,10 @@ export function CfiPlantStorySection() {
                 <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl bg-white/95 border border-slate-200 backdrop-blur-md flex items-center justify-between text-xs font-mono shadow-lg">
                   <div className="flex items-center gap-2 text-slate-900 font-bold">
                     <Activity className="w-4 h-4 text-orange-600" />
-                    <span>CNC-04: LIVE TELEMETRY</span>
+                    <span>CMM-02: LASER METROLOGY</span>
                   </div>
                   <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                    OEE 98.7%
+                    TOLERANCE ±0.002mm
                   </span>
                 </div>
               </div>

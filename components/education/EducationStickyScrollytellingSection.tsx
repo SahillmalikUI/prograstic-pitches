@@ -180,8 +180,8 @@ export function EducationStickyScrollytellingSection() {
               className="relative w-full max-w-lg aspect-[16/10] rounded-[36px] overflow-hidden shadow-[0_35px_80px_-15px_rgba(0,0,0,0.22)] border-4 border-white bg-slate-900"
             >
               <Image
-                src="/mockups/education_feature.jpg"
-                alt="Global University Admissions Dossier Platform"
+                src="/mockups/education_counselor_tablet.jpg"
+                alt="Admissions Counselor Reviewing Global University Offers on Tablet"
                 fill
                 className="object-cover"
                 priority
