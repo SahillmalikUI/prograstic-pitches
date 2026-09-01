@@ -3,7 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, ShieldCheck, Activity, CheckCircle2, Zap, Layers, Lock, Smile } from "lucide-react";
+import { ArrowRight, Sparkles, ShieldCheck, Activity, CheckCircle2, Zap, Layers, Lock, Smile, Radio } from "lucide-react";
+import { TiltCard } from "@/components/ui/TiltCard";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { InfiniteMarquee } from "@/components/ui/InfiniteMarquee";
 import { IndustryVertical } from "@/data/verticals";
 
 interface DentalHeroSectionProps {
@@ -12,11 +15,19 @@ interface DentalHeroSectionProps {
 }
 
 export function DentalHeroSection({ vertical, onOpenScopeModal }: DentalHeroSectionProps) {
+  const marqueeBadges = [
+    { text: "3D Intraoral STL Scanner Sync", tag: "CAD/CAM", icon: <Smile className="w-3.5 h-3.5 text-teal-600" /> },
+    { text: "1-Tap 32-Tooth Odontogram", tag: "CHAIRSIDE", icon: <Zap className="w-3.5 h-3.5 text-amber-600" /> },
+    { text: "VITA Shade Matching & Lab Gateway", tag: "PROSTHETICS", icon: <Sparkles className="w-3.5 h-3.5 text-purple-600" /> },
+    { text: "Automated WhatsApp Patient EMI Quotes", tag: "FINANCE", icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> },
+    { text: "100% Private Cloud Sovereignty", tag: "SECURITY", icon: <Lock className="w-3.5 h-3.5 text-blue-600" /> },
+  ];
+
   return (
-    <section className="relative pt-10 pb-20 sm:pb-32 px-4 sm:px-6 lg:px-8 bg-white text-slate-900 overflow-hidden">
+    <section className="relative pt-10 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 bg-white text-slate-900 overflow-hidden">
       {/* Soft Mint Radial Aura */}
       <motion.div
-        animate={{ scale: [1, 1.06, 1], opacity: [0.5, 0.7, 0.5] }}
+        animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.75, 0.5] }}
         transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
         className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-teal-100/50 rounded-full blur-[100px] pointer-events-none"
       />
@@ -37,25 +48,29 @@ export function DentalHeroSection({ vertical, onOpenScopeModal }: DentalHeroSect
             </span>
             <span className="tracking-widest uppercase font-bold text-slate-900">PROGRASTIC DENTAL & CHAIRSIDE OS</span>
             <span className="text-slate-300">•</span>
-            <span className="text-teal-700 font-bold bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-600 animate-pulse" />
-              OPERATORY TELEMETRY: LIVE
+            <span className="text-teal-700 font-bold bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200 flex items-center gap-1.5 shadow-sm">
+              <Radio className="w-3 h-3 text-teal-600 animate-spin" />
+              <span>OPERATORY TELEMETRY: LIVE</span>
             </span>
           </div>
 
           <div className="flex items-center gap-6 text-xs font-mono text-slate-600">
             <div>
               <span className="text-slate-400">CHAIR TURNOVER: </span>
-              <strong className="text-teal-700 font-bold">12 MIN AVG</strong>
+              <strong className="text-teal-700 font-bold bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
+                <AnimatedCounter value={12} suffix=" MIN AVG" />
+              </strong>
             </div>
             <div className="hidden sm:block">
               <span className="text-slate-400">LAB DISPATCH STATUS: </span>
-              <strong className="text-emerald-600 font-bold">100% TRACKED</strong>
+              <strong className="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                <AnimatedCounter value={100} suffix="% TRACKED" />
+              </strong>
             </div>
           </div>
         </motion.div>
 
-        {/* Giant Brutalist-Clean Heading with Stagger */}
+        {/* Giant Brutalist-Clean Heading */}
         <div className="space-y-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -91,7 +106,7 @@ export function DentalHeroSection({ vertical, onOpenScopeModal }: DentalHeroSect
 
             <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
               <motion.button
-                whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onOpenScopeModal}
                 className="w-full px-8 py-4 rounded-full bg-slate-950 hover:bg-slate-800 text-white font-bold text-sm uppercase tracking-wider transition-all shadow-xl shadow-slate-950/15 flex items-center justify-center gap-3 group"
@@ -113,13 +128,8 @@ export function DentalHeroSection({ vertical, onOpenScopeModal }: DentalHeroSect
           </motion.div>
         </div>
 
-        {/* Daylight Dental Operatory Display with Floating Live Telemetry Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35 }}
-          className="relative rounded-[36px] sm:rounded-[48px] overflow-hidden border border-slate-200 bg-slate-50 shadow-2xl group"
-        >
+        {/* Daylight Dental Operatory Display with 3D Tilt Physics */}
+        <TiltCard className="rounded-[36px] sm:rounded-[48px] overflow-hidden border border-slate-200 bg-slate-50 shadow-2xl group">
           <div className="relative w-full aspect-[16/9] min-h-[380px] sm:min-h-[520px]">
             <Image
               src="/mockups/dental_light_hero.jpg"
@@ -132,7 +142,7 @@ export function DentalHeroSection({ vertical, onOpenScopeModal }: DentalHeroSect
             {/* Subtle Gradient Vignette */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
 
-            {/* Floating Live Telemetry Cards with Floating Physics */}
+            {/* Floating Live Telemetry Cards */}
             <div className="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row items-stretch sm:items-end justify-between gap-4">
               {/* Telemetry Card 1 */}
               <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200 text-slate-900 space-y-1.5 max-w-sm shadow-xl animate-float-slow">
@@ -146,7 +156,7 @@ export function DentalHeroSection({ vertical, onOpenScopeModal }: DentalHeroSect
                   </span>
                 </div>
                 <div className="text-sm font-bold font-sans text-slate-900">
-                  Intraoral STL scan mapped to 32-tooth digital odontogram in 12 seconds.
+                  Intraoral STL scan mapped to 32-tooth digital odontogram in <AnimatedCounter value={12} suffix="s" />.
                 </div>
               </div>
 
@@ -164,7 +174,15 @@ export function DentalHeroSection({ vertical, onOpenScopeModal }: DentalHeroSect
               </div>
             </div>
           </div>
-        </motion.div>
+        </TiltCard>
+
+        {/* Infinite Dental Protocol Ticker */}
+        <div className="pt-2 border-t border-slate-200/80 space-y-3">
+          <div className="text-[11px] font-mono text-slate-400 uppercase tracking-widest text-center">
+            CAD/CAM PROTOCOLS & CHAIRSIDE INTEGRATIONS
+          </div>
+          <InfiniteMarquee items={marqueeBadges} speed={28} />
+        </div>
       </div>
     </section>
   );

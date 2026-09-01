@@ -3,13 +3,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Activity, ShieldCheck, Zap, Bed, Clock, ArrowRight, HeartPulse, Sparkles, CheckCircle2 } from "lucide-react";
+import { TiltCard } from "@/components/ui/TiltCard";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 
 export function BevelPillarsSection() {
   const pillars = [
     {
       title: "Flow",
       tagline: "Live OPD Queue Velocity",
-      score: "94%",
+      scoreValue: 94,
+      scoreSuffix: "%",
       scoreLabel: "Triage Clearance Rate",
       accent: "#2563EB",
       bgAccent: "bg-blue-50",
@@ -22,8 +25,9 @@ export function BevelPillarsSection() {
     {
       title: "Wards",
       tagline: "Bed & ICU Synchronizer",
-      score: "11/12",
-      scoreLabel: "Active Ward Occupancy",
+      scoreValue: 91.6,
+      scoreSuffix: "%",
+      scoreLabel: "Active Ward Occupancy (11/12 Beds)",
       accent: "#0D9488",
       bgAccent: "bg-teal-50",
       textAccent: "text-teal-700",
@@ -35,8 +39,9 @@ export function BevelPillarsSection() {
     {
       title: "Care",
       tagline: "30s Clinical Documentation",
-      score: "30s",
-      scoreLabel: "Prescription Handoff",
+      scoreValue: 30,
+      scoreSuffix: "s",
+      scoreLabel: "Prescription Handoff Speed",
       accent: "#E11D48",
       bgAccent: "bg-rose-50",
       textAccent: "text-rose-700",
@@ -57,8 +62,8 @@ export function BevelPillarsSection() {
         transition={{ duration: 0.6 }}
         className="text-center space-y-3 max-w-3xl mx-auto"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-mono font-bold text-slate-800">
-          <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-mono font-bold text-slate-800 shadow-sm">
+          <Sparkles className="w-3.5 h-3.5 text-blue-600 animate-spin" />
           <span>THE 3 CLINICAL PILLARS</span>
         </div>
         <h2 className="text-4xl sm:text-6xl font-extrabold text-slate-950 font-display tracking-tight leading-tight">
@@ -69,7 +74,7 @@ export function BevelPillarsSection() {
         </p>
       </motion.div>
 
-      {/* The 3 Cards Grid with Stagger & Spring Hover Animations */}
+      {/* The 3 Cards Grid with 3D Tilt Physics & Counter Animation */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {pillars.map((pillar, idx) => (
           <motion.div
@@ -78,49 +83,53 @@ export function BevelPillarsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: idx * 0.15 }}
-            whileHover={{ y: -8 }}
-            className="p-8 sm:p-10 rounded-[36px] bg-[#F8FAFC] border border-slate-200/90 flex flex-col justify-between space-y-8 group shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
           >
-            {/* Top Pillar Title & Live Status Indicator */}
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <span className="text-3xl sm:text-4xl font-black font-display text-slate-950">
-                  {pillar.title}
-                </span>
-                <span
-                  className={`px-3 py-1 rounded-full text-xs font-mono font-bold border ${pillar.bgAccent} ${pillar.textAccent} ${pillar.borderAccent} flex items-center gap-1.5`}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-                  <span>{pillar.tagline}</span>
-                </span>
-              </div>
-
-              {/* Big Animated Score Display */}
-              <div className="space-y-1 pt-2">
-                <div className="text-5xl sm:text-6xl font-black text-slate-950 font-display tracking-tight">
-                  {pillar.score}
+            <TiltCard className="p-8 sm:p-10 rounded-[36px] bg-[#F8FAFC] border border-slate-200/90 flex flex-col justify-between space-y-8 group shadow-lg hover:shadow-2xl h-full">
+              {/* Top Pillar Title & Live Status Indicator */}
+              <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-3xl sm:text-4xl font-black font-display text-slate-950">
+                    {pillar.title}
+                  </span>
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-mono font-bold border ${pillar.bgAccent} ${pillar.textAccent} ${pillar.borderAccent} flex items-center gap-1.5 shadow-sm`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+                    <span>{pillar.tagline}</span>
+                  </span>
                 </div>
-                <div className="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">
-                  {pillar.scoreLabel}
+
+                {/* Big Animated Score Display */}
+                <div className="space-y-1 pt-2">
+                  <div className="text-5xl sm:text-6xl font-black text-slate-950 font-display tracking-tight">
+                    <AnimatedCounter
+                      value={pillar.scoreValue}
+                      suffix={pillar.scoreSuffix}
+                      decimals={pillar.scoreSuffix === "%" && pillar.scoreValue % 1 !== 0 ? 1 : 0}
+                    />
+                  </div>
+                  <div className="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">
+                    {pillar.scoreLabel}
+                  </div>
+                </div>
+
+                <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+                  {pillar.description}
+                </p>
+              </div>
+
+              {/* Bottom 2 Mini Metric Badges */}
+              <div className="grid grid-cols-2 gap-3 pt-6 border-t border-slate-200/80">
+                <div className="p-3 rounded-2xl bg-white border border-slate-200/80 space-y-0.5 shadow-sm">
+                  <div className="text-[10px] font-mono text-slate-400 uppercase font-bold">{pillar.stat1.label}</div>
+                  <div className="text-sm font-bold text-slate-900">{pillar.stat1.val}</div>
+                </div>
+                <div className="p-3 rounded-2xl bg-white border border-slate-200/80 space-y-0.5 shadow-sm">
+                  <div className="text-[10px] font-mono text-slate-400 uppercase font-bold">{pillar.stat2.label}</div>
+                  <div className="text-sm font-bold text-slate-900">{pillar.stat2.val}</div>
                 </div>
               </div>
-
-              <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
-                {pillar.description}
-              </p>
-            </div>
-
-            {/* Bottom 2 Mini Metric Badges */}
-            <div className="grid grid-cols-2 gap-3 pt-6 border-t border-slate-200/80">
-              <div className="p-3 rounded-2xl bg-white border border-slate-200/80 space-y-0.5 shadow-sm">
-                <div className="text-[10px] font-mono text-slate-400 uppercase font-bold">{pillar.stat1.label}</div>
-                <div className="text-sm font-bold text-slate-900">{pillar.stat1.val}</div>
-              </div>
-              <div className="p-3 rounded-2xl bg-white border border-slate-200/80 space-y-0.5 shadow-sm">
-                <div className="text-[10px] font-mono text-slate-400 uppercase font-bold">{pillar.stat2.label}</div>
-                <div className="text-sm font-bold text-slate-900">{pillar.stat2.val}</div>
-              </div>
-            </div>
+            </TiltCard>
           </motion.div>
         ))}
       </div>

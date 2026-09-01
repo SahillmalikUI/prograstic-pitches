@@ -3,7 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Terminal, Activity, ShieldCheck, Zap, Gauge, Cpu, CheckCircle2, Factory } from "lucide-react";
+import { ArrowRight, Terminal, Activity, ShieldCheck, Zap, Gauge, Cpu, CheckCircle2, Factory, Radio, Box } from "lucide-react";
+import { TiltCard } from "@/components/ui/TiltCard";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { InfiniteMarquee } from "@/components/ui/InfiniteMarquee";
 import { IndustryVertical } from "@/data/verticals";
 
 interface CfiManufacturingHeroProps {
@@ -12,11 +15,19 @@ interface CfiManufacturingHeroProps {
 }
 
 export function CfiManufacturingHero({ vertical, onOpenScopeModal }: CfiManufacturingHeroProps) {
+  const marqueeBadges = [
+    { text: "PLC Siemens / Allen-Bradley Telemetry", tag: "SCADA", icon: <Cpu className="w-3.5 h-3.5 text-orange-600" /> },
+    { text: "Real-Time OEE Loss Analytics", tag: "BENCHMARK", icon: <Gauge className="w-3.5 h-3.5 text-emerald-600" /> },
+    { text: "RFID Automated AGV Dispatch", tag: "LOGISTICS", icon: <Box className="w-3.5 h-3.5 text-blue-600" /> },
+    { text: "Barcode Lot Traceability (Trace ID)", tag: "COMPLIANCE", icon: <ShieldCheck className="w-3.5 h-3.5 text-purple-600" /> },
+    { text: "100% Private Cloud ERP Gateway", tag: "SOVEREIGN", icon: <Zap className="w-3.5 h-3.5 text-amber-600" /> },
+  ];
+
   return (
-    <section className="relative pt-10 pb-20 sm:pb-32 px-4 sm:px-6 lg:px-8 bg-white text-slate-900 overflow-hidden">
+    <section className="relative pt-10 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 bg-white text-slate-900 overflow-hidden">
       {/* Soft Ambient Radial Lighting */}
       <motion.div
-        animate={{ scale: [1, 1.06, 1], opacity: [0.5, 0.7, 0.5] }}
+        animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.75, 0.5] }}
         transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
         className="absolute top-0 right-1/4 w-[600px] h-[350px] bg-orange-100/50 rounded-full blur-[100px] pointer-events-none"
       />
@@ -36,25 +47,29 @@ export function CfiManufacturingHero({ vertical, onOpenScopeModal }: CfiManufact
             </span>
             <span className="tracking-widest uppercase font-bold text-slate-900">PROGRASTIC INDUSTRIAL OS</span>
             <span className="text-slate-300">•</span>
-            <span className="text-orange-600 font-bold bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-600 animate-pulse" />
-              LIVE TELEMETRY
+            <span className="text-orange-600 font-bold bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200 flex items-center gap-1.5 shadow-sm">
+              <Radio className="w-3 h-3 text-orange-600 animate-spin" />
+              <span>SHOPFLOOR TELEMETRY: LIVE</span>
             </span>
           </div>
 
           <div className="flex items-center gap-6 text-xs font-mono text-slate-600">
             <div>
               <span className="text-slate-400">OEE BENCHMARK: </span>
-              <strong className="text-slate-900 font-bold">94.8%</strong>
+              <strong className="text-slate-900 font-bold bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                <AnimatedCounter value={94.8} suffix="%" decimals={1} />
+              </strong>
             </div>
             <div className="hidden sm:block">
               <span className="text-slate-400">BATCH ACCURACY: </span>
-              <strong className="text-emerald-600 font-bold">99.98%</strong>
+              <strong className="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                <AnimatedCounter value={99.98} suffix="%" decimals={2} />
+              </strong>
             </div>
           </div>
         </motion.div>
 
-        {/* Giant Brutalist Hero Heading with Framer Motion Stagger */}
+        {/* Giant Brutalist Hero Heading */}
         <div className="space-y-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -90,7 +105,7 @@ export function CfiManufacturingHero({ vertical, onOpenScopeModal }: CfiManufact
 
             <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
               <motion.button
-                whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onOpenScopeModal}
                 className="w-full px-8 py-4 rounded-full bg-slate-950 hover:bg-slate-800 text-white font-bold text-sm uppercase tracking-wider transition-all shadow-xl shadow-slate-950/15 flex items-center justify-center gap-3 group"
@@ -112,13 +127,8 @@ export function CfiManufacturingHero({ vertical, onOpenScopeModal }: CfiManufact
           </motion.div>
         </div>
 
-        {/* Daylight Factory Floor Visual Display with Floating Live Telemetry Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35 }}
-          className="relative rounded-[36px] sm:rounded-[48px] overflow-hidden border border-slate-200 bg-slate-50 shadow-2xl group"
-        >
+        {/* Daylight Factory Floor Visual Display with 3D Tilt Physics */}
+        <TiltCard className="rounded-[36px] sm:rounded-[48px] overflow-hidden border border-slate-200 bg-slate-50 shadow-2xl group">
           <div className="relative w-full aspect-[16/9] min-h-[380px] sm:min-h-[520px]">
             <Image
               src="/mockups/manufacturing_light_hero.jpg"
@@ -131,7 +141,7 @@ export function CfiManufacturingHero({ vertical, onOpenScopeModal }: CfiManufact
             {/* Subtle Gradient Vignette */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
 
-            {/* Floating Live Telemetry Cards with Floating Keyframes */}
+            {/* Floating Live Telemetry Cards */}
             <div className="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row items-stretch sm:items-end justify-between gap-4">
               {/* Telemetry Card 1 */}
               <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200 text-slate-900 space-y-1.5 max-w-sm shadow-xl animate-float-slow">
@@ -141,7 +151,7 @@ export function CfiManufacturingHero({ vertical, onOpenScopeModal }: CfiManufact
                     ASSEMBLY LINE 04
                   </span>
                   <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                    OEE: 98.7%
+                    OEE: <AnimatedCounter value={98.7} suffix="%" decimals={1} />
                   </span>
                 </div>
                 <div className="text-sm font-bold font-sans text-slate-900">
@@ -163,7 +173,15 @@ export function CfiManufacturingHero({ vertical, onOpenScopeModal }: CfiManufact
               </div>
             </div>
           </div>
-        </motion.div>
+        </TiltCard>
+
+        {/* Infinite Industrial Protocol Ticker */}
+        <div className="pt-2 border-t border-slate-200/80 space-y-3">
+          <div className="text-[11px] font-mono text-slate-400 uppercase tracking-widest text-center">
+            INDUSTRIAL IOT & MACHINE INTEGRATION PROTOCOLS
+          </div>
+          <InfiniteMarquee items={marqueeBadges} speed={28} />
+        </div>
       </div>
     </section>
   );
