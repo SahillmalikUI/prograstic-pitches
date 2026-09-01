@@ -1,0 +1,28 @@
+"use client";
+
+import React from "react";
+import { FaceScrollAestheticDemo } from "@/components/widgets/FaceScrollAestheticDemo";
+import { Sparkles, Eye, Activity } from "lucide-react";
+
+export function AestheticsInteractiveDemoSection() {
+  return (
+    <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10 bg-white text-slate-900">
+      <div className="text-center space-y-3 max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-xs font-mono font-bold text-amber-900">
+          <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+          <span>INTERACTIVE 3D FACIAL INJECTION MAPPER</span>
+        </div>
+        <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-display tracking-tight uppercase leading-tight">
+          Test The Live 3D Facial Injection Mapper
+        </h2>
+        <p className="text-base sm:text-lg text-slate-600 font-sans leading-relaxed">
+          Simulate a real patient consultation: select treatment zones across forehead, mid-face cheeks, and jawline with live depth radar.
+        </p>
+      </div>
+
+      <div className="rounded-[40px] bg-[#FFFDF7] border border-amber-200/90 p-4 sm:p-8 shadow-xl">
+        <FaceScrollAestheticDemo />
+      </div>
+    </section>
+  );
+}
