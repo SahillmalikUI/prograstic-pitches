@@ -1,125 +1,128 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { Zap, Activity, HeartPulse, CheckCircle2, ArrowRight, ShieldCheck, Clock, Users } from "lucide-react";
+import { motion } from "framer-motion";
+import { Activity, ShieldCheck, Zap, Bed, Clock, ArrowRight, HeartPulse, Sparkles, CheckCircle2 } from "lucide-react";
 
 export function BevelPillarsSection() {
+  const pillars = [
+    {
+      title: "Flow",
+      tagline: "Live OPD Queue Velocity",
+      score: "94%",
+      scoreLabel: "Triage Clearance Rate",
+      accent: "#2563EB",
+      bgAccent: "bg-blue-50",
+      textAccent: "text-blue-700",
+      borderAccent: "border-blue-200",
+      description: "Automated digital tokens and live WhatsApp queue radars eliminate crowded waiting rooms.",
+      stat1: { label: "AVG WAIT TIME", val: "8.4 min" },
+      stat2: { label: "OPD VELOCITY", val: "+42% faster" },
+    },
+    {
+      title: "Wards",
+      tagline: "Bed & ICU Synchronizer",
+      score: "11/12",
+      scoreLabel: "Active Ward Occupancy",
+      accent: "#0D9488",
+      bgAccent: "bg-teal-50",
+      textAccent: "text-teal-700",
+      borderAccent: "border-teal-200",
+      description: "Color-coded bed heatmaps synchronize admissions, sanitization, and nursing stations in real time.",
+      stat1: { label: "DISCHARGE LAG", val: "Zero delays" },
+      stat2: { label: "ICU READY", val: "1-tap reserve" },
+    },
+    {
+      title: "Care",
+      tagline: "30s Clinical Documentation",
+      score: "30s",
+      scoreLabel: "Prescription Handoff",
+      accent: "#E11D48",
+      bgAccent: "bg-rose-50",
+      textAccent: "text-rose-700",
+      borderAccent: "border-rose-200",
+      description: "Voice and touch-optimized prescription templates dispatch orders directly to pharmacy and lab.",
+      stat1: { label: "RX TEMPLATES", val: "1-tap presets" },
+      stat2: { label: "LAB HANDOFF", val: "Instant sync" },
+    },
+  ];
+
   return (
-    <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16 bg-white text-slate-900">
-      {/* Header - Matching Bevel Screenshot 3 */}
-      <div className="text-center space-y-4 max-w-3xl mx-auto">
-        <h2 className="text-4xl sm:text-6xl font-extrabold text-slate-950 font-display tracking-tight leading-[1.08]">
-          Start the day with confidence
+    <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 bg-white text-slate-900">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-center space-y-3 max-w-3xl mx-auto"
+      >
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-mono font-bold text-slate-800">
+          <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+          <span>THE 3 CLINICAL PILLARS</span>
+        </div>
+        <h2 className="text-4xl sm:text-6xl font-extrabold text-slate-950 font-display tracking-tight leading-tight">
+          Run your hospital with total clarity
         </h2>
-        <p className="text-lg sm:text-xl text-slate-600 font-sans leading-relaxed">
-          Turn your hospital's signals into clear, actionable metrics.
+        <p className="text-base sm:text-xl text-slate-600 font-sans leading-relaxed">
+          Three interconnected clinical engines designed to eliminate friction across reception, wards, and consultations.
         </p>
-      </div>
+      </motion.div>
 
-      {/* 3 Crisp Light Blue Bevel Pillar Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
-        {/* Card 1: Flow (Strain Equivalent) */}
-        <div className="p-8 sm:p-10 rounded-[36px] bg-[#F2F6FA] border border-slate-200/80 flex flex-col justify-between space-y-8 shadow-sm hover:shadow-xl transition-all duration-300">
-          <div className="space-y-3">
-            <h3 className="text-3xl font-extrabold text-slate-950 font-display">
-              Flow
-            </h3>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
-              Track how smoothly your OPD is running with one number that captures daily patient throughput and queue velocity.
-            </p>
-          </div>
-
-          {/* Embedded Clean White Mini UI Card */}
-          <div className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-md space-y-4">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-500 pb-2 border-b border-slate-100">
-              <span className="font-bold text-slate-900">OPD VELOCITY</span>
-              <span className="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full">Normal Range</span>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-4xl font-extrabold text-slate-950 font-display">94%</div>
-                <div className="text-xs text-slate-500 font-mono">Queue Clearance</div>
+      {/* The 3 Cards Grid with Stagger & Spring Hover Animations */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {pillars.map((pillar, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: idx * 0.15 }}
+            whileHover={{ y: -8 }}
+            className="p-8 sm:p-10 rounded-[36px] bg-[#F8FAFC] border border-slate-200/90 flex flex-col justify-between space-y-8 group shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
+          >
+            {/* Top Pillar Title & Live Status Indicator */}
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <span className="text-3xl sm:text-4xl font-black font-display text-slate-950">
+                  {pillar.title}
+                </span>
+                <span
+                  className={`px-3 py-1 rounded-full text-xs font-mono font-bold border ${pillar.bgAccent} ${pillar.textAccent} ${pillar.borderAccent} flex items-center gap-1.5`}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+                  <span>{pillar.tagline}</span>
+                </span>
               </div>
-              <div className="w-12 h-12 rounded-full border-4 border-emerald-500 border-t-transparent flex items-center justify-center font-bold text-emerald-600 text-xs">
-                ✓
+
+              {/* Big Animated Score Display */}
+              <div className="space-y-1 pt-2">
+                <div className="text-5xl sm:text-6xl font-black text-slate-950 font-display tracking-tight">
+                  {pillar.score}
+                </div>
+                <div className="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">
+                  {pillar.scoreLabel}
+                </div>
               </div>
+
+              <p className="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+                {pillar.description}
+              </p>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600 flex items-center justify-between font-mono">
-              <span>Avg Waiting:</span>
-              <strong className="text-slate-900">8.4 mins</strong>
-            </div>
-          </div>
-        </div>
-
-        {/* Card 2: Wards (Sleep Equivalent) */}
-        <div className="p-8 sm:p-10 rounded-[36px] bg-[#F2F6FA] border border-slate-200/80 flex flex-col justify-between space-y-8 shadow-sm hover:shadow-xl transition-all duration-300">
-          <div className="space-y-3">
-            <h3 className="text-3xl font-extrabold text-slate-950 font-display">
-              Wards
-            </h3>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
-              Discover real-time bed availability and zero double-bookings by knowing your exact ward turnover.
-            </p>
-          </div>
-
-          {/* Embedded Clean White Mini UI Card */}
-          <div className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-md space-y-4">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-500 pb-2 border-b border-slate-100">
-              <span className="font-bold text-slate-900">ICU BED RADAR</span>
-              <span className="text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded-full">11 / 12 Active</span>
-            </div>
-
-            <div className="grid grid-cols-4 gap-2 text-center text-xs font-mono font-bold">
-              <div className="p-2 rounded-lg bg-rose-100 text-rose-800 border border-rose-200">101</div>
-              <div className="p-2 rounded-lg bg-rose-100 text-rose-800 border border-rose-200">102</div>
-              <div className="p-2 rounded-lg bg-rose-100 text-rose-800 border border-rose-200">103</div>
-              <div className="p-2 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-200">104 ✓</div>
-            </div>
-
-            <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600 flex items-center justify-between font-mono">
-              <span>Next Discharge:</span>
-              <strong className="text-slate-900">Bed 102 (2:00 PM)</strong>
-            </div>
-          </div>
-        </div>
-
-        {/* Card 3: Care (Recovery Equivalent) */}
-        <div className="p-8 sm:p-10 rounded-[36px] bg-[#F2F6FA] border border-slate-200/80 flex flex-col justify-between space-y-8 shadow-sm hover:shadow-xl transition-all duration-300">
-          <div className="space-y-3">
-            <h3 className="text-3xl font-extrabold text-slate-950 font-display">
-              Care
-            </h3>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
-              30-second digital prescriptions, immediate lab dispatch, and longitudinal patient health records.
-            </p>
-          </div>
-
-          {/* Embedded Clean White Mini UI Card */}
-          <div className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-md space-y-4">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-500 pb-2 border-b border-slate-100">
-              <span className="font-bold text-slate-900">DOCTOR EMR SPEED</span>
-              <span className="text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-full">Instant Sync</span>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-4xl font-extrabold text-slate-950 font-display">30s</div>
-                <div className="text-xs text-slate-500 font-mono">Rx Completion Time</div>
+            {/* Bottom 2 Mini Metric Badges */}
+            <div className="grid grid-cols-2 gap-3 pt-6 border-t border-slate-200/80">
+              <div className="p-3 rounded-2xl bg-white border border-slate-200/80 space-y-0.5 shadow-sm">
+                <div className="text-[10px] font-mono text-slate-400 uppercase font-bold">{pillar.stat1.label}</div>
+                <div className="text-sm font-bold text-slate-900">{pillar.stat1.val}</div>
               </div>
-              <div className="text-xs font-mono text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
-                4x Faster
+              <div className="p-3 rounded-2xl bg-white border border-slate-200/80 space-y-0.5 shadow-sm">
+                <div className="text-[10px] font-mono text-slate-400 uppercase font-bold">{pillar.stat2.label}</div>
+                <div className="text-sm font-bold text-slate-900">{pillar.stat2.val}</div>
               </div>
             </div>
-
-            <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600 flex items-center justify-between font-mono">
-              <span>Pharmacy Dispatch:</span>
-              <strong className="text-emerald-600">Automated WhatsApp</strong>
-            </div>
-          </div>
-        </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
